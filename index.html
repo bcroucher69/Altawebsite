@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altametrics | The Intelligent Operating System for Enterprise Restaurants</title>
+    <meta name="description"
+        content="Automate your restaurant operations with precision AI. Stop overstaffing, predict inventory accurately, and drive sustainable profits.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- SEO & LLM Structure -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Altametrics Enterprise Restaurant System",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Enterprise-grade restaurant operations software featuring AI-driven labor forecasting, predictive inventory, and comprehensive back-office automation."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does Altametrics AI optimize restaurant labor costs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our AI continuously analyzes historical sales, foot traffic, local events, and weather to predict exactly how many staff members you need for every shift, ensuring compliance and preventing costly overstaffing while maintaining customer service standards."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Altametrics integrate with my existing POS and major suppliers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Altametrics has deep, out-of-the-box API integrations with the industry's leading POS systems (including NCR Aloha, Oracle Micros, Toast, and Par) and major food suppliers (Sysco, US Foods) for seamless AP automation and real-time operational data synchronization."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the software built for single locations or multi-unit enterprise chains?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Altametrics is purposely built to scale for multi-unit enterprise restaurants and large franchise groups. The system handles thousands of individual stores, offering consolidated global reporting, robust hierarchy management, and enterprise-wide recipe and menu publishing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the predictive inventory system reduce food waste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By calculating theoretical versus actual usage down to the individual ingredient level in real-time. The platform generates automated Purchase Orders based on predictive sales depletion, preventing both critical stockouts and excessive spoilage of perishable goods."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+    <div class="glow-orb top-left"></div>
+    <div class="glow-orb top-right"></div>
+
+    <nav class="navbar reveal">
+        <div class="nav-container">
+            <div class="logo" onclick="location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html#prep-planning" class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-centered">
+        <!-- Background Video -->
+        <video class="hero-bg-video" autoplay loop muted playsinline>
+            <source src="assets/12246591_1920_1080_30fps.mp4" type="video/mp4">
+        </video>
+        <div class="hero-bg-overlay"></div>
+
+        <div class="hero-text fade-up">
+            <h1>The <span class="text-gradient">Intelligent</span> Operating System for Restaurants.</h1>
+            <p>Automate operations, predict inventory, and drive sustainable profits with the #1 AI-powered platform for
+                the hospitality industry.</p>
+            <div class="hero-cta center">
+                <a href="#" class="btn-primary btn-large">Start Free Trial</a>
+                <a href="#" class="btn-secondary btn-large outline">See How it Works</a>
+            </div>
+        </div>
+
+        <div class="hero-dashboard-wrapper fade-up delay-2">
+            <div class="hero-dashboard glass-panel">
+                <div class="mockup-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="title">Alta.AI Enterprise Dashboard</div>
+                </div>
+                <div class="mockup-body mockup-grid">
+                    <div class="stat-card float-anim">
+                        <h4>Real-Time Sales (Global)</h4>
+                        <div class="value positive">$1,245,500 <span class="trend">↑ 18%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar h-40"></div>
+                            <div class="bar h-70"></div>
+                            <div class="bar h-50"></div>
+                            <div class="bar h-90"></div>
+                            <div class="bar h-100 primary"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card float-anim-reverse delay-1">
+                        <h4>AI Shift Optimizer</h4>
+                        <p class="sub-text">Predicted rush at 12:30 PM. 2 staff members auto-scheduled.</p>
+                        <button class="btn-sm">Review Schedule</button>
+                    </div>
+                    <div class="stat-card float-anim delay-2">
+                        <h4>Predictive Inventory</h4>
+                        <div class="value">98.5% <span class="trend sub-text"
+                                style="color:#666; background:transparent;">Accuracy</span></div>
+                        <p class="sub-text">Auto-PO generated for supplier: Sysco</p>
+                        <button class="btn-sm" style="color:#16a34a; background:rgba(22,163,74,0.1);">Approve
+                            Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="trusted-by">
+        <p>Trusted by 100,000+ restaurant professionals across the globe</p>
+        <div class="marquee">
+            <div class="marquee-content">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp"
+                        alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's"
+                        class="brand-logo-img"></div>
+            </div>
+            <!-- Duplicate for seamless scrolling -->
+            <div class="marquee-content" aria-hidden="true">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp"
+                        alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's"
+                        class="brand-logo-img"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Sticky Scroll Section -->
+    <section id="sticky-features" class="sticky-scroll-section reveal">
+        <!-- Pill Nav (Decorative from screenshot) -->
+        <div class="pill-nav-container">
+            <div class="pill-nav">
+                <a href="#module-workforce" class="pill active">Workforce Management</a>
+                <a href="#module-food" class="pill">Food Management</a>
+                <a href="#module-bi" class="pill">Business Intelligence</a>
+                <a href="#module-accounting" class="pill">Accounting</a>
+            </div>
+        </div>
+
+        <div class="sticky-scroll-container">
+            <!-- Left Side: Sticky -->
+            <div class="sticky-left">
+                <h2>Exactly what you get when you sign up for <br><em>Altametrics</em> Suite</h2>
+                <!-- Dotted SVG line mimicking screenshot -->
+                <svg class="decorative-line" width="250" height="150" viewBox="0 0 250 150"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0,30 C 50,30 100,10 150,80 C 180,130 200,80 250,120" fill="none" stroke="white"
+                        stroke-width="2" stroke-dasharray="8 8" opacity="0.6" />
+                    <circle cx="245" cy="115" r="4" fill="white" />
+                </svg>
+            </div>
+
+            <!-- Right Side: Scrolling Cards -->
+            <div class="scrolling-right">
+                <!-- Card 1 -->
+                <div id="module-workforce" class="scroll-card">
+                    <div class="card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">MODULE 1</span>
+                        <h3>Workforce Management</h3>
+                        <p>Stop overstaffing and reduce labor costs with AI-driven scheduling that accurately predicts
+                            your rush hours based on historical data and local events.</p>
+                        <ul class="feature-list">
+                            <li>+ One-click schedule generation</li>
+                            <li>+ Mobile app for employee shift swapping</li>
+                            <li>+ Overtime alerts and compliance tracking</li>
+                        </ul>
+                        <button class="btn-sm" style="margin-top:10px;">Learn more</button>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div id="module-food" class="scroll-card">
+                    <div class="card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">MODULE 2</span>
+                        <h3>Food Management</h3>
+                        <p>Automate your supply chain from vendor to plate. Predict exactly what you need to order to
+                            minimize food waste and eliminate stock-outs.</p>
+                        <ul class="feature-list">
+                            <li>+ Auto-generated Purchase Orders</li>
+                            <li>+ Real-time theoretical vs actual variance</li>
+                            <li>+ Recipe costing and menu engineering</li>
+                        </ul>
+                        <button class="btn-sm" style="margin-top:10px;">Learn more</button>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div id="module-bi" class="scroll-card">
+                    <div class="card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">MODULE 3</span>
+                        <h3>Business Intelligence</h3>
+                        <p>Get a bird's-eye view of your entire enterprise or drill down into individual store
+                            performance in real-time without waiting for EOD reports.</p>
+                        <ul class="feature-list">
+                            <li>+ Customizable live dashboards</li>
+                            <li>+ Automated daily P&L emails</li>
+                            <li>+ Multi-unit performance benchmarking</li>
+                        </ul>
+                        <button class="btn-sm" style="margin-top:10px;">Learn more</button>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div id="module-accounting" class="scroll-card">
+                    <div class="card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">MODULE 4</span>
+                        <h3>Automated Accounting</h3>
+                        <p>Eliminate manual data entry. Integrate seamlessly with your existing tech stack to
+                            automatically reconcile invoices and process payroll.</p>
+                        <ul class="feature-list">
+                            <li>+ AP/AR automation</li>
+                            <li>+ Bank reconciliation</li>
+                            <li>+ Seamless POS and Vendor integrations</li>
+                        </ul>
+                        <button class="btn-sm" style="margin-top:10px;">Learn more</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stacked Cards Section -->
+    <section id="stacked-cards" class="stacked-cards-section">
+        <article class="stacked-card card-1">
+            <h2>Enterprise Scalability & Multi-Unit Operations</h2>
+            <p>Scale seamlessly across thousands of locations. Altametrics provides central visibility to manage global
+                menus, standardize reporting, and drive franchise revenue from a single dashboard.</p>
+            <a href="javascript:void(0)" class="btn-text open-modal" data-modal="grow-sales">Discover Enterprise
+                Features &rsaquo;</a>
+        </article>
+
+        <article class="stacked-card card-2">
+            <h2>Drive Profitability with AI Forecasting</h2>
+            <p>Stop relying on guesswork. Our AI rapidly analyzes historical sales, local events, and weather patterns
+                to generate precision forecasts, optimizing your labor spend and maximizing profit margins.</p>
+            <a href="javascript:void(0)" class="btn-text open-modal" data-modal="improve-profits">See AI in Action
+                &rsaquo;</a>
+        </article>
+
+        <article class="stacked-card card-4">
+            <h2>Precision Workforce Management</h2>
+            <p>Eliminate buddy-punching and costly overtime violations. Ensure strict compliance with complex local
+                labor laws while empowering your staff with a robust shift-swapping mobile app.</p>
+            <a href="javascript:void(0)" class="btn-text open-modal" data-modal="time-money">Optimize Your Workforce
+                &rsaquo;</a>
+            <div class="mockup-img tablet-mock"></div>
+        </article>
+
+        <article class="stacked-card card-5">
+            <h2>Automated Food Safety & HACCP Compliance</h2>
+            <p>Protect your brand's reputation. Automate critical digital temperature logs, enforce daily operational
+                checklists, and receive real-time mobile alerts before food safety violations occur.</p>
+            <a href="javascript:void(0)" class="btn-text open-modal" data-modal="haccp">Explore QA & Safety &rsaquo;</a>
+            <div class="mockup-img phone-mock"></div>
+        </article>
+
+        <article class="stacked-card card-6 two-col-card">
+            <div class="col">
+                <h2>Comprehensive Back Office Suite</h2>
+                <p>Unify your operations. From AP/AR to daily theoretical P&L generation, replace disjointed systems
+                    with a single financial enterprise source of truth.</p>
+                <a href="javascript:void(0)" class="btn-text open-modal" data-modal="back-office">View Back Office Tools
+                    &rsaquo;</a>
+                <div class="mockup-img monitor-mock"></div>
+            </div>
+            <div class="col">
+                <h2>Seamless POS & Vendor Integration</h2>
+                <p>Connect your entire tech stack effortlessly. Altametrics integrates flawlessly with major POS systems
+                    (Aloha, Micros, Toast) and your leading food vendors.</p>
+                <a href="javascript:void(0)" class="btn-text open-modal" data-modal="workforce">Explore Ecosystem
+                    &rsaquo;</a>
+                <div class="mockup-img staff-mock float-anim"></div>
+            </div>
+        </article>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonial-stack-section">
+        <div class="testimonial-stack-heading reveal">
+            <h2>"JUST FINE" ISN'T REALLY FINE ANYMORE THOUGH, IS IT?</h2>
+            <p style="color:#cbd5e1; font-size:1.1rem; max-width:600px; margin:15px auto 0;">Don't just take our word
+                for it. Hear from the world's leading brands.</p>
+        </div>
+
+        <div class="testimonial-cards-container">
+            <div class="testimonial-stacked-card test-card-1 reveal">
+                <div class="test-card-left">
+                    <h3>15% reduction in labor costs.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Altametrics has fundamentally changed how we handle workforce management. We've seen a 15%
+                        reduction in labor costs in just six months while improving employee satisfaction."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Sarah Jenkins" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Sarah Jenkins</strong>
+                            <span>VP of Operations, Burger King</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-2 reveal" style="transition-delay: 0.1s;">
+                <div class="test-card-left">
+                    <h3>Unparalleled predictive AI.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"The predictive inventory AI is unparalleled. It takes the guesswork out of our supply chain,
+                        minimizing waste and ensuring we never stock out of critical ingredients."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Michael Chen" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Michael Chen</strong>
+                            <span>Director of Supply Chain, Wendy's</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-3 reveal" style="transition-delay: 0.2s;">
+                <div class="test-card-left">
+                    <h3>A single source of truth.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Their reporting capabilities and seamless integration with our POS mean we finally have a single
+                        source of truth. We can make decisions in real-time without relying on end-of-day reports."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Emily Rodriguez" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Emily Rodriguez</strong>
+                            <span>CFO, Regional QSR Group</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Ecosystem Animation Section -->
+    <section id="integrations" class="integrations-section reveal">
+        <div class="integration-visual">
+            <div class="core-node" style="padding: 10px;">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">
+            </div>
+
+            <svg class="connecting-lines" width="150" height="400" viewBox="0 0 150 400"
+                xmlns="http://www.w3.org/2000/svg">
+                <!-- Branching dotted line -->
+                <path d="M0,200 C75,200 75,100 150,100" class="r365-dotted-line" />
+                <path d="M0,200 C75,200 75,300 150,300" class="r365-dotted-line" />
+            </svg>
+
+            <div class="vertical-marquee-container">
+                <div class="vertical-col col-down">
+                    <div class="vertical-col-inner animate-down">
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://buffalowildwings.com&size=128"
+                                alt="Buffalo Wild Wings"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://chipotle.com&size=128"
+                                alt="Chipotle"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://jamba.com&size=128"
+                                alt="Jamba"></div>
+                        <!-- duplicate -->
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://buffalowildwings.com&size=128"
+                                alt="Buffalo Wild Wings"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://chipotle.com&size=128"
+                                alt="Chipotle"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://jamba.com&size=128"
+                                alt="Jamba"></div>
+                    </div>
+                </div>
+                <div class="vertical-col col-up" style="margin-top: 50px;">
+                    <div class="vertical-col-inner animate-up">
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://noodles.com&size=128"
+                                alt="Noodles"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://peets.com&size=128"
+                                alt="Peets"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://pizzahut.com&size=128"
+                                alt="Pizza Hut"></div>
+                        <!-- duplicate -->
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://noodles.com&size=128"
+                                alt="Noodles"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://peets.com&size=128"
+                                alt="Peets"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://pizzahut.com&size=128"
+                                alt="Pizza Hut"></div>
+                    </div>
+                </div>
+                <div class="vertical-col col-down" style="margin-top: -30px;">
+                    <div class="vertical-col-inner animate-down-slow">
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://tacobell.com&size=128"
+                                alt="Taco Bell"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://tokyojoes.com&size=128"
+                                alt="Tokyo Joes"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://wendys.com&size=128"
+                                alt="Wendys"></div>
+                        <!-- duplicate -->
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://tacobell.com&size=128"
+                                alt="Taco Bell"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://tokyojoes.com&size=128"
+                                alt="Tokyo Joes"></div>
+                        <div class="partner-node-img"><img
+                                src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://wendys.com&size=128"
+                                alt="Wendys"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-content">
+            <h2>Integrations That Actually Create Profits</h2>
+            <p>Altametrics works with the industry's leading vendors, POS, and payroll providers to centralize your cost
+                data, while eliminating manual entry without added overhead.</p>
+            <a href="#" class="btn-primary"
+                style="background: #dc2626; box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);">VIEW OUR PARTNERS</a>
+        </div>
+    </section>
+
+    <!-- NEW FAQ Section -->
+    <section id="faq" class="faq-section reveal">
+        <div class="faq-heading">
+            <h2>Frequently Asked Questions</h2>
+            <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">Everything you
+                need to know about the Altametrics platform and our enterprise restaurant management software.</p>
+        </div>
+        <div class="accordion">
+            <details class="accordion-item" open>
+                <summary class="accordion-header">
+                    How does Altametrics AI optimize restaurant labor costs?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Our AI continuously analyzes historical sales, foot traffic, local events, and weather to predict
+                        exactly how many staff members you need for every shift, ensuring compliance and preventing
+                        costly overstaffing while maintaining customer service standards.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Does Altametrics integrate with my existing POS and major suppliers?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Yes, Altametrics has deep, out-of-the-box API integrations with the industry's leading POS
+                        systems (including NCR Aloha, Oracle Micros, Toast, and Par) and major food suppliers (Sysco, US
+                        Foods) for seamless AP automation and real-time operational data synchronization.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Is the software built for single locations or multi-unit enterprise chains?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Altametrics is purposely built to scale for multi-unit enterprise restaurants and large franchise
+                        groups. The system handles thousands of individual stores, offering consolidated global
+                        reporting, robust hierarchy management, and enterprise-wide recipe and menu publishing.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    How does the predictive inventory system reduce food waste?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>By calculating theoretical versus actual usage down to the individual ingredient level in
+                        real-time. The platform generates automated Purchase Orders based on predictive sales depletion,
+                        preventing both critical stockouts and excessive spoilage of perishable goods.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="glass-panel huge-cta">
+            <h2>Ready to transform your operations?</h2>
+            <p>Join the 100,000+ restaurants that rely on Altametrics.</p>
+            <a href="#" class="btn-primary btn-large">Request a Personalized Demo</a>
+        </div>
+    </section>
+
+    <!-- NEW Footer updated with live Altametrics links -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="https://altametrics.com/restaurant-back-office.html">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="https://altametrics.com/restaurant-inventory.html">Food Management</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="https://altametrics.com/restaurant-checklist.html">Checklist</a>
+                    <a href="https://altametrics.com/restaurant-enterprise.html">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="https://altametrics.com/blog/">Articles</a>
+                    <a href="https://training.altametrics.com">Training Academy</a>
+                    <a href="https://altametrics.com/faq.html">FAQs</a>
+                    <a href="https://altametrics.com/contact.html">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="https://altametrics.com/about.html">About Us</a>
+                    <a href="https://altametrics.com/careers.html">Jobs</a>
+                    <a href="https://altametrics.com/diversity.html">Diversity</a>
+                    <a href="https://altametrics.com/schedule-demo.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved. &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/privacy-policy/"
+                    style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/terms-of-use/"
+                    style="color:var(--text-secondary); text-decoration:none;">Terms of Use</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/sitemap.html"
+                    style="color:var(--text-secondary); text-decoration:none;">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <!-- Learn More Modal -->
+    <div id="info-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <div class="modal-text">
+                    <span class="modal-subtitle">MANAGEMENT SYSTEM</span>
+                    <h2 class="modal-title">Restaurant Back Office</h2>
+                    <ul class="modal-list">
+                        <li>The restaurant industry is highly competitive and requires constant innovation to succeed
+                        </li>
+                        <li>A well-managed back office is crucial to the success of a restaurant, as it can lead to
+                            increased efficiency and better customer service</li>
+                        <li>Automating the back office is a solution that many restaurants have implemented to improve
+                            their operations</li>
+                        <li>The back office is just as important as the front office and needs support from other
+                            departments to be successful</li>
+                        <li>Improving restaurant back-office operations is important for long-term success and better
+                            customer service</li>
+                    </ul>
+                    <div class="modal-footer-cta">
+                        <span class="promo-text"><i>Limited time. <strong>50% OFF</strong> solutions for 3
+                                months.*</i></span>
+                        <a href="#" class="btn-primary"
+                            style="background: #3b82f6; box-shadow: none; border-radius: 6px;">CHECK OUR PRICING</a>
+                    </div>
+                </div>
+                <div class="modal-image">
+                    <!-- Replace with a more accurate image via url, this is a placeholder -->
+                    <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                        alt="Back Office UI" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chat-popup" style="display: block;">
+            <button class="chat-close"
+                onclick="document.querySelector('.chat-popup').style.display='none'">&times;</button>
+            <div class="chat-avatar">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Felix&backgroundColor=e6f0fa" alt="AI Bot">
+            </div>
+            <div class="chat-message">
+                Want to chat about Altametrics products? I'm an AI bot that's here to help! 🤩
+            </div>
+        </div>
+        <button class="chat-toggle-btn"
+            onclick="const p=document.querySelector('.chat-popup'); p.style.display=(p.style.display==='none'?'block':'none')">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"
+                    fill="white" />
+            </svg>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

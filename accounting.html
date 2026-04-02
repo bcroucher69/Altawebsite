@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Accounting & Back Office | Altametrics</title>
+    <meta name="description"
+        content="Automate your restaurant's accounts payable, banking, and financial reporting with AI-driven accounting. Unified visibility from vendor to plate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Accounting Specific Styles */
+        :root {
+            --accounting-primary: #10b981;
+            --accounting-secondary: #0ea5e9;
+            --accounting-glow: rgba(16, 185, 129, 0.15);
+        }
+
+        .accounting-hero {
+            padding: 180px 5% 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 20%, var(--accounting-glow) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 40%);
+        }
+
+        .acc-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 100px;
+            color: var(--accounting-primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+        }
+
+        .acc-hero-mockup {
+            width: 100%;
+            max-width: 1200px;
+            height: 650px;
+            margin: 60px auto 0;
+            background: url('assets/accounting_hero_dashboard_v1_1774608082257.png') center/contain no-repeat;
+            border-radius: 24px;
+            filter: drop-shadow(0 40px 100px rgba(16, 185, 129, 0.2));
+            position: relative;
+            transform: perspective(1500px) rotateX(2deg);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .acc-hero-mockup:hover {
+            transform: perspective(1500px) rotateX(0deg) translateY(-10px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accounting-primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto 120px;
+            padding: 0 5%;
+        }
+
+        .feature-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-image {
+            flex: 1.2;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .step-container {
+            padding: 100px 5%;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .step-card {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accounting-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        /* Integrations Section */
+        .integrations-section {
+            padding: 120px 0 100px;
+            text-align: center;
+            background: #0a0f1e;
+            position: relative;
+            overflow: hidden;
+            display: block !important; /* Force block to override global flex styles */
+        }
+
+        .integrations-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .integrations-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 5% 80px;
+        }
+
+        .integrations-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accounting-primary);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 100px;
+            padding: 8px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .integrations-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: #f1f5f9;
+            margin-bottom: 24px;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .integrations-subtitle {
+            color: #94a3b8;
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .integrations-footer {
+            margin: 60px auto 0;
+            padding: 40px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
+        }
+
+        .integrations-footer h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .integrations-footer p {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        @media (max-width: 900px) {
+            .integrations-footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+
+        /* Marquee animations */
+        @keyframes marquee-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes marquee-right {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Fade edges */
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #0a0f1e, transparent);
+        }
+
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #0a0f1e, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            padding: 8px 0;
+        }
+
+        .marquee-track.left {
+            animation: marquee-left 30s linear infinite;
+        }
+
+        .marquee-track.right {
+            animation: marquee-right 30s linear infinite;
+            margin-top: 14px;
+        }
+
+        .marquee-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        .integration-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            white-space: nowrap;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+            cursor: default;
+        }
+
+        .integration-chip:hover {
+            border-color: var(--accounting-primary);
+            background: rgba(16, 185, 129, 0.12);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .integration-chip .chip-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+        }
+
+        /* Before After Section */
+        .before-after-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+        }
+
+        .before-after-grid {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 0;
+            max-width: 1100px;
+            margin: 60px auto 0;
+            align-items: stretch;
+        }
+
+        .ba-column {
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .ba-column.before {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .ba-column.after {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .ba-header {
+            padding: 24px 30px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ba-column.before .ba-header {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+
+        .ba-column.after .ba-header {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+        }
+
+        .ba-items {
+            padding: 10px 0;
+        }
+
+        .ba-item {
+            padding: 18px 30px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            line-height: 1.4;
+        }
+
+        .ba-item:last-child {
+            border-bottom: none;
+        }
+
+        .ba-column.before .ba-item {
+            color: #94a3b8;
+        }
+
+        .ba-column.after .ba-item {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .ba-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #475569;
+            background: transparent;
+        }
+
+        /* Feature icons list */
+        .feature-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .feat-icon-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .feat-icon-card:hover {
+            border-color: var(--accounting-primary);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.1);
+        }
+
+        .feat-icon-card .icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .feat-icon-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1e293b;
+        }
+
+        .feat-icon-card p {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-row,
+            .feature-row:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .before-after-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ba-vs {
+                display: none;
+            }
+
+            .feature-icon-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .integrations-title {
+                font-size: 1.8rem !important;
+            }
+        }
+
+        .integrations-title {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 1200px) {
+            .integrations-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow-orb top-left" style="background: rgba(16, 185, 129, 0.2);"></div>
+    <div class="glow-orb top-right" style="background: rgba(14, 165, 233, 0.2);"></div>
+
+    <nav class="navbar reveal">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)" class="active">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html#prep-planning" class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="accounting-hero">
+        <div class="hero-text fade-up">
+            <span class="acc-badge">AI Financial Engine</span>
+            <h1 style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; letter-spacing: -0.04em;">Automate Your
+                Back Office. <br><span class="text-gradient">Master Your Profits.</span></h1>
+            <p style="font-size: 1.4rem; color: #64748b; max-width: 800px; margin: 0 auto 40px;">
+                Eliminate manual data entry and close your books faster. Altametrics bridges the gap between daily
+                operations and financial reporting with seamless automation.
+            </p>
+            <div class="hero-cta center">
+                <a href="javascript:void(0)" class="btn-primary btn-large pulse-anim">Get Started Free</a>
+                <a href="javascript:void(0)" class="btn-secondary btn-large">Watch Platform Demo</a>
+            </div>
+        </div>
+        <div class="acc-hero-mockup fade-up delay-2"></div>
+    </header>
+
+    <div class="stats-grid reveal">
+        <div class="stat-item float-anim">
+            <span class="stat-value">50%</span>
+            <span class="stat-label">Reduction in Accounting Work</span>
+        </div>
+        <div class="stat-item float-anim delay-1">
+            <span class="stat-value">25%</span>
+            <span class="stat-label">Faster Invoice Processing</span>
+        </div>
+        <div class="stat-item float-anim delay-2">
+            <span class="stat-value">13+ hrs</span>
+            <span class="stat-label">Saved Per Manager/Week</span>
+        </div>
+        <div class="stat-item float-anim delay-3">
+            <span class="stat-value">100%</span>
+            <span class="stat-label">Audit Readiness</span>
+        </div>
+    </div>
+
+    <section id="features" style="padding: 100px 0; background: white;">
+        <!-- Feature 1: AP Automation -->
+        <div class="feature-row reveal">
+            <div class="feature-content">
+                <span class="acc-badge"
+                    style="background: rgba(14, 165, 233, 0.1); color: #0ea5e9; border-color: rgba(14, 165, 233, 0.2);">Accounts
+                    Payable</span>
+                <h2 id="invoice-automation" style="font-size: 3rem; margin-bottom: 20px;">Restaurant-Specific <span class="text-gradient">AP
+                        Automation</span></h2>
+                <p style="font-size: 1.2rem; color: #475569; margin-bottom: 30px; line-height: 1.6;">
+                    Save time and eliminate errors by automating your accounts payable from end to end. Our AI-driven
+                    OCR captures every line item with 99.9% accuracy.
+                </p>
+                <ul class="feature-list" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--accounting-primary); font-size: 1.5rem;">✓</span> Auto-capture, code,
+                        and route invoices for fast approval
+                    </li>
+                    <li style="margin-bottom: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--accounting-primary); font-size: 1.5rem;">✓</span> Real-time vendor
+                        pricing tracking and variance alerts
+                    </li>
+                    <li style="margin-bottom: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--accounting-primary); font-size: 1.5rem;">✓</span> Maximize savings by
+                        auto-applying credit memos
+                    </li>
+                </ul>
+            </div>
+            <div class="feature-image float-anim">
+                <img src="assets/ap_automation_mockup_v1_1774608102475.png"
+                    alt="AP Automation Dashboard">
+            </div>
+        </div>
+
+        <!-- Feature 2: Financial Reporting -->
+        <div class="feature-row reveal">
+            <div class="feature-content">
+                <span class="acc-badge">Intelligence</span>
+                <h2 id="general-ledger" style="font-size: 3rem; margin-bottom: 20px;">dynamic <span class="text-gradient">Financial
+                        reporting</span></h2>
+                <p style="font-size: 1.2rem; color: #475569; margin-bottom: 30px; line-height: 1.6;">
+                    Make confident decisions with a real-time, complete view of your restaurant’s financial health.
+                    Unified P&L statements updated daily, not monthly.
+                </p>
+                <ul class="feature-list" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--accounting-primary); font-size: 1.5rem;">✓</span> Instant, accurate
+                        reporting with deep POS data integration
+                    </li>
+                    <li style="margin-bottom: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--accounting-primary); font-size: 1.5rem;">✓</span> Track P&L, labor,
+                        and cash flow across all locations in one place
+                    </li>
+                    <li style="margin-bottom: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--accounting-primary); font-size: 1.5rem;">✓</span> Enable quick
+                        decisions with instant report sharing for stakeholders
+                    </li>
+                </ul>
+            </div>
+            <div class="feature-image float-anim-reverse">
+                <img src="assets/enterprise_financial_summary_v1_1774608121305.png"
+                    alt="Enterprise Financial Summary">
+            </div>
+        </div>
+
+        <!-- Feature 3: Cash & Bank Reconciliation -->
+        <div class="feature-row reveal">
+            <div class="feature-content">
+                <span class="acc-badge"
+                    style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-color: rgba(139, 92, 246, 0.2);">Cash
+                    Management</span>
+                <h2 id="bank-recon" style="font-size: 3rem; margin-bottom: 20px;">Automated Cash &amp; <span class="text-gradient">Bank
+                        Reconciliation</span></h2>
+                <p style="font-size: 1.2rem; color: #475569; margin-bottom: 30px; line-height: 1.6;">
+                    Connect over 15,000 banks directly to your back office. Every deposit, fee, and variance is
+                    automatically matched and flagged — no more month-end scrambles.
+                </p>
+                <div class="feature-icon-grid">
+                    <div class="feat-icon-card">
+                        <span class="icon">🏦</span>
+                        <div>
+                            <h4>Auto Bank Feed</h4>
+                            <p>Daily transaction imports from all major banks and payment processors.</p>
+                        </div>
+                    </div>
+                    <div class="feat-icon-card">
+                        <span class="icon">🔍</span>
+                        <div>
+                            <h4>Variance Detection</h4>
+                            <p>Instantly flags over/short discrepancies and alerts the right manager.</p>
+                        </div>
+                    </div>
+                    <div class="feat-icon-card">
+                        <span class="icon">💳</span>
+                        <div>
+                            <h4>Credit Card Matching</h4>
+                            <p>Reconcile credit card batches automatically against POS settlement data.</p>
+                        </div>
+                    </div>
+                    <div class="feat-icon-card">
+                        <span class="icon">📋</span>
+                        <div>
+                            <h4>Audit Trail</h4>
+                            <p>Every transaction tied to a source document — always audit-ready.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-image float-anim"
+                style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; min-height: 450px;">
+                <div style="padding: 40px; text-align: left; width: 100%;">
+                    <div
+                        style="color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">
+                        Bank Reconciliation Summary</div>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div
+                            style="background: rgba(255,255,255,0.12); border-radius: 12px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: white; font-weight: 600;">Transactions Imported</span>
+                            <span style="color: #a78bfa; font-weight: 800; font-size: 1.1rem;">1,482</span>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.12); border-radius: 12px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: white; font-weight: 600;">Auto-Matched</span>
+                            <span style="color: #34d399; font-weight: 800; font-size: 1.1rem;">1,479 ✓</span>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.12); border-radius: 12px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: white; font-weight: 600;">Flagged for Review</span>
+                            <span style="color: #fb923c; font-weight: 800; font-size: 1.1rem;">3 ⚠</span>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.12); border-radius: 12px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: white; font-weight: 600;">Match Rate</span>
+                            <span style="color: #34d399; font-weight: 800; font-size: 1.3rem;">99.8%</span>
+                        </div>
+                        <div
+                            style="margin-top: 10px; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.8rem;">
+                            Last updated: Today, 2:00 AM auto-sync</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section class="integrations-section" style="display: block !important; padding: 120px 0 100px;">
+        <div class="glow-orb" style="top: 20%; left: 10%; width: 300px; height: 300px; background: var(--accounting-primary); opacity: 0.05;"></div>
+        <div class="glow-orb" style="bottom: 10%; right: 5%; width: 400px; height: 400px; background: var(--accounting-secondary); opacity: 0.05;"></div>
+
+        <!-- Tier 1: TOP Content (Formerly Left) -->
+        <div class="integrations-inner" style="display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; width: 100% !important; max-width: none !important; margin: 0 auto !important; padding: 0 5% 80px !important;">
+            <span class="integrations-label">200+ Integrations</span>
+            <h2 id="inventory-sync" class="integrations-title" style="font-size: 3.5rem !important; text-align: center !important;">Connects With <span class="text-gradient">Your Entire Stack</span></h2>
+            <p class="integrations-subtitle" style="margin: 0 auto !important; text-align: center !important; max-width: 650px !important;">Altametrics plugs directly into your existing restaurant tech — no rip-and-replace required. Experience seamless data flow from front to back of house.</p>
+        </div>
+
+        <!-- Tier 2: MIDDLE Animation -->
+        <div class="marquee-wrapper">
+            <div class="marquee-track left">
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/quickbooks.intuit.com" onerror="this.style.display='none'" alt=""> QuickBooks</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/xero.com" onerror="this.style.display='none'" alt=""> Xero</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/oracle.com" onerror="this.style.display='none'" alt=""> Oracle NetSuite</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/sageintacct.com" onerror="this.style.display='none'" alt=""> Sage Intacct</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/toasttab.com" onerror="this.style.display='none'" alt=""> Toast POS</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/squareup.com" onerror="this.style.display='none'" alt=""> Square</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/microsoft.com" onerror="this.style.display='none'" alt=""> Microsoft Dynamics</div>
+                <!-- duplicates for seamless loop -->
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/quickbooks.intuit.com" onerror="this.style.display='none'" alt=""> QuickBooks</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/xero.com" onerror="this.style.display='none'" alt=""> Xero</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/oracle.com" onerror="this.style.display='none'" alt=""> Oracle NetSuite</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/sageintacct.com" onerror="this.style.display='none'" alt=""> Sage Intacct</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/toasttab.com" onerror="this.style.display='none'" alt=""> Toast POS</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/squareup.com" onerror="this.style.display='none'" alt=""> Square</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/microsoft.com" onerror="this.style.display='none'" alt=""> Microsoft Dynamics</div>
+            </div>
+        </div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-track right">
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/micros.com" onerror="this.style.display='none'" alt=""> Oracle MICROS</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/lightspeedhq.com" onerror="this.style.display='none'" alt=""> Lightspeed</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/alohapos.com" onerror="this.style.display='none'" alt=""> NCR Aloha</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/paychex.com" onerror="this.style.display='none'" alt=""> Paychex</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/adp.com" onerror="this.style.display='none'" alt=""> ADP</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/sysco.com" onerror="this.style.display='none'" alt=""> Sysco</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/usfoods.com" onerror="this.style.display='none'" alt=""> US Foods</div>
+                <!-- duplicates for seamless loop -->
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/micros.com" onerror="this.style.display='none'" alt=""> Oracle MICROS</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/lightspeedhq.com" onerror="this.style.display='none'" alt=""> Lightspeed</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/alohapos.com" onerror="this.style.display='none'" alt=""> NCR Aloha</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/paychex.com" onerror="this.style.display='none'" alt=""> Paychex</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/adp.com" onerror="this.style.display='none'" alt=""> ADP</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/sysco.com" onerror="this.style.display='none'" alt=""> Sysco</div>
+                <div class="integration-chip"><img class="chip-icon" src="https://logo.clearbit.com/usfoods.com" onerror="this.style.display='none'" alt=""> US Foods</div>
+            </div>
+        </div>
+
+        <!-- Tier 3: BOTTOM Content (Formerly Right) -->
+        <div class="integrations-footer" style="display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; max-width: 1000px !important; margin: 60px auto 0 !important; border-top: 1px solid rgba(255,255,255,0.08) !important;">
+            <div class="footer-text-group" style="text-align: left !important;">
+                <h3 style="color: #f1f5f9 !important; font-size: 1.8rem !important; margin-bottom: 8px !important;">Ready to connect your entire stack?</h3>
+                <p style="color: #64748b !important; font-size: 1.1rem !important; margin: 0 !important;">Don't see your system? We support 200+ integrations. <a href="javascript:void(0)" style="color: var(--accounting-primary) !important; font-weight: 600 !important; text-decoration: none !important;">See full list →</a></p>
+            </div>
+            <a href="javascript:void(0)" class="btn-primary btn-large pulse-anim" style="white-space: nowrap !important; flex-shrink: 0 !important;">Schedule a Demo Today</a>
+        </div>
+    </section>
+
+    <!-- Before / After Section -->
+    <section class="before-after-section reveal">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <span class="acc-badge">The Difference</span>
+            <h2 style="font-size: 3rem; margin: 20px 0 15px; color: white;">Life Before &amp; After <span
+                    class="text-gradient">Altametrics</span></h2>
+            <p style="color: #94a3b8; font-size: 1.1rem;">See what changes when you automate your restaurant's back
+                office.</p>
+        </div>
+        <div class="before-after-grid">
+            <div class="ba-column before">
+                <div class="ba-header">❌ Before Altametrics</div>
+                <div class="ba-items">
+                    <div class="ba-item">📋 Manually entering invoices into spreadsheets every day</div>
+                    <div class="ba-item">📉 Monthly P&amp;L reports — too late to act on</div>
+                    <div class="ba-item">🔎 Hours spent hunting for missing deposits and variances</div>
+                    <div class="ba-item">📬 Chasing managers for expense approvals via email</div>
+                    <div class="ba-item">🧾 Paper invoices lost in the mail or buried in drawers</div>
+                    <div class="ba-item">💸 Paying duplicate invoices due to lack of visibility</div>
+                    <div class="ba-item">📦 Zero integration between POS sales data and books</div>
+                </div>
+            </div>
+            <div class="ba-vs">VS</div>
+            <div class="ba-column after">
+                <div class="ba-header">✅ After Altametrics</div>
+                <div class="ba-items">
+                    <div class="ba-item">🤖 AI captures &amp; codes every invoice automatically at 99.9% accuracy</div>
+                    <div class="ba-item">📊 Real-time Daily P&amp;L updated every morning from POS data</div>
+                    <div class="ba-item">⚡ Bank reconciliation with 99.8% auto-match rate — daily</div>
+                    <div class="ba-item">✅ Digital approval workflows with mobile sign-off in seconds</div>
+                    <div class="ba-item">📲 Electronic invoicing — every vendor document stored and searchable</div>
+                    <div class="ba-item">🛡️ Duplicate invoice detection catches mistakes before payment</div>
+                    <div class="ba-item">🔗 Bi-directional POS integration — one source of truth for finance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="step-container reveal">
+        <h2 style="font-size: 3rem; margin-bottom: 20px;">The Path to Financial Clarity</h2>
+        <p style="color: #94a3b8; font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px;">Stop chasing spreadsheets.
+            Start scaling your restaurant group with a unified system of record.</p>
+
+        <div class="steps-grid">
+            <div class="step-card fade-up">
+                <div class="step-number">1</div>
+                <h3 style="color: white;">Connect Systems</h3>
+                <p style="color: #94a3b8;">Deep API integration with your POS, banks, and vendors for seamless data
+                    flow.</p>
+            </div>
+            <div class="step-card fade-up delay-1">
+                <div class="step-number">2</div>
+                <h3 style="color: white;">Automate Books</h3>
+                <p style="color: #94a3b8;">Transactions are captured, categorized, and reconciled daily with AI
+                    accuracy.</p>
+            </div>
+            <div class="step-card fade-up delay-2">
+                <div class="step-number">3</div>
+                <h3 style="color: white;">Get Insights</h3>
+                <p style="color: #94a3b8;">Access real-time dashboards that drive proactive labor and food cost
+                    decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-stack-section">
+        <div class="testimonial-stack-heading reveal">
+            <h2>PROVEN AT ENTERPRISE SCALE</h2>
+            <p style="color:#cbd5e1; font-size:1.1rem; max-width:600px; margin:15px auto 0;">Hear from the financial
+                leaders who have transformed their back office with Altametrics.</p>
+        </div>
+
+        <div class="testimonial-cards-container">
+            <div class="testimonial-stacked-card test-card-1 reveal">
+                <div class="test-card-left">
+                    <h3>"Closes the gap between accounting and operations."</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Altametrics is the greatest software I’ve ever worked with. It closes the gap between accounting
+                        and operations, giving us real-time insights that were previously impossible to track daily."
+                    </p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Nancy Cioll" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Nancy Cioll</strong>
+                            <span>Controller, BRG Hospitality</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-2 reveal" style="transition-delay: 0.1s;">
+                <div class="test-card-left">
+                    <h3>"An absolute game-changer for growth."</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Moving from a static system to a dynamic system overnight was incredible. The automation of AP
+                        alone saved us over 20 hours a week of manual data entry."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Kevin O'Bold" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Kevin O’Bold</strong>
+                            <span>VP of Finance, Ultra Steak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section reveal">
+        <div class="faq-heading">
+            <h2>Frequently Asked Questions</h2>
+            <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">Common questions
+                about restaurant back-office automation.</p>
+        </div>
+        <div class="accordion">
+            <details class="accordion-item" open>
+                <summary class="accordion-header">
+                    How does the POS integration work for accounting?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Altametrics pulls sales and labor data directly from your POS every night. It automatically
+                        generates journal entries, reconciles cash deposits, and updates your P&L so you have a true
+                        "Daily P&L" without manual work.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Do I need to change my current bank to use the automation?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>No. We integrate with over 15,000 financial institutions globally. You simply connect your
+                        existing accounts via our secure banking portal to enable automated transaction matching and
+                        reconciliation.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Is this suitable for a single location, or is it only for chains?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>While our system is powerful enough for global enterprise chains with thousands of locations, its
+                        modular nature makes it extremely efficient for single-unit operators looking to eliminate
+                        back-office busywork and focus on hospitality.</p>
+                </div>
+            </details>
+        </div>
+        <details class="accordion-item">
+            <summary class="accordion-header">
+                Which accounting software does Altametrics connect to?
+                <div class="accordion-icon"></div>
+            </summary>
+            <div class="accordion-content">
+                <p>Altametrics has certified integrations with QuickBooks, Xero, Oracle NetSuite, Sage Intacct,
+                    Microsoft Dynamics, and more. Our two-way sync pushes journal entries, vendor bills, and bank
+                    reconciliation data directly into your GL, eliminating all manual data transfer.</p>
+            </div>
+        </details>
+        <details class="accordion-item">
+            <summary class="accordion-header">
+                How does the accounts payable approval workflow function?
+                <div class="accordion-icon"></div>
+            </summary>
+            <div class="accordion-content">
+                <p>Once an invoice is captured and coded by our AI, it is automatically routed to the designated
+                    approver based on your custom rules (e.g., invoices over $500 require a Director's approval).
+                    Approvers receive a mobile notification, review the attached invoice image, and approve or reject
+                    with a single tap — all with a full audit trail.</p>
+            </div>
+        </details>
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="glass-panel huge-cta">
+            <h2 style="font-size: 3rem; color: var(--text-primary);">Tired of chasing paper?</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 40px;">Automate your accounting
+                and reclaim your time for what matters—your guests.</p>
+            <a href="javascript:void(0)" class="btn-primary btn-large">Request a Personalized Demo</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="javascript:void(0)">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="inventory.html">Food Management</a>
+                    <a href="reporting.html">Reporting</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="checklist.html">Checklist</a>
+                    <a href="javascript:void(0)">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="javascript:void(0)">Articles</a>
+                    <a href="javascript:void(0)">Training Academy</a>
+                    <a href="javascript:void(0)">FAQs</a>
+                    <a href="javascript:void(0)">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="javascript:void(0)">About Us</a>
+                    <a href="javascript:void(0)">Jobs</a>
+                    <a href="javascript:void(0)">Diversity</a>
+                    <a href="javascript:void(0)">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

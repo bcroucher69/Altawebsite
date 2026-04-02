@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations & Ecosystem | Altametrics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar reveal">
+        <div class="nav-container">
+            <div class="logo" onclick="location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html#prep-planning" class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html" class="active">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-centered" style="min-height: 60vh; padding-top: 220px;">
+        <div class="hero-text">
+            <h1>Expert <span class="text-gradient">Integrations.</span></h1>
+            <p>Connect Altametrics with your existing POS, Payroll, and Supply Chain vendors for a truly unified restaurant operating system.</p>
+            <div class="promo-banner" style="margin-top: 40px;">
+                <span>COMING SOON: EXPANDED PARTNER MARKETPLACE</span>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="https://altametrics.com/restaurant-back-office.html">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="https://altametrics.com/restaurant-inventory.html">Food Management</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="https://altametrics.com/restaurant-checklist.html">Checklist</a>
+                    <a href="https://altametrics.com/restaurant-enterprise.html">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="https://altametrics.com/blog/">Articles</a>
+                    <a href="https://training.altametrics.com">Training Academy</a>
+                    <a href="https://altametrics.com/faq.html">FAQs</a>
+                    <a href="https://altametrics.com/contact.html">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="https://altametrics.com/about.html">About Us</a>
+                    <a href="https://altametrics.com/careers.html">Jobs</a>
+                    <a href="https://altametrics.com/diversity.html">Diversity</a>
+                    <a href="https://altametrics.com/schedule-demo.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved. &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/privacy-policy/"
+                    style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/terms-of-use/"
+                    style="color:var(--text-secondary); text-decoration:none;">Terms of Use</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/sitemap.html"
+                    style="color:var(--text-secondary); text-decoration:none;">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

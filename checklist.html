@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Operational Checklists & HACCP | Altametrics</title>
+    <meta name="description"
+        content="Digitize your restaurant operations with AI-powered checklists and HACCP compliance. Real-time food safety monitoring and task management.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --checklist-primary: #6366f1;
+            --haccp-danger: #ef4444;
+            --haccp-success: #22c55e;
+            --checklist-glow: rgba(99, 102, 241, 0.15);
+        }
+
+        .checklist-hero {
+            padding: 160px 5% 100px;
+            background: radial-gradient(circle at 10% 10%, var(--checklist-glow) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
+            text-align: center;
+        }
+
+        .haccp-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 100px;
+            color: var(--checklist-primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .haccp-principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 80px auto;
+        }
+
+        /* Flip Card */
+        .flip-card {
+            perspective: 1000px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .flip-card-front {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .flip-card-front .principle-number {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--checklist-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.7;
+        }
+
+        .flip-card-front .principle-big-num {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .flip-card-front .principle-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #334155;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            transform: rotateY(180deg);
+            flex-direction: column;
+            text-align: left;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3);
+        }
+
+        .flip-card-back .principle-number {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .flip-card-back h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin: 0;
+        }
+
+        .flip-card-back p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .probe-section {
+            padding: 100px 5%;
+            background: #0f172a;
+            color: white;
+            border-radius: 60px;
+            margin: 40px 20px;
+            overflow: hidden;
+        }
+
+        .probe-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .probe-content {
+            flex: 1;
+        }
+
+        .probe-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .probe-image img {
+            width: 100%;
+            filter: drop-shadow(0 0 50px rgba(99, 102, 241, 0.3));
+        }
+
+        .phone-screen-img {
+            width: 100%;
+            border-radius: 28px;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25),
+                0 30px 60px -30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-section {
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .pricing-card {
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 2px solid var(--checklist-primary);
+            box-shadow: 0 40px 80px rgba(99, 102, 241, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            background: #ffffff;
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* HACCP Principles Section */
+        .haccp-principles {
+            padding: 100px 5%;
+        }
+
+        /* Inventory-style feature rows (used for Real-time Alerts & Digital Logs sections) */
+        .inv-feature-section {
+            padding: 80px 5%;
+        }
+
+        .inv-feature-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+        }
+
+        .inv-row {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .inv-content {
+            flex: 1;
+        }
+
+        .inv-image {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #f1f5f9;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        }
+
+        .inv-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        .inv-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 14px;
+            font-size: 1.05rem;
+        }
+
+        .inv-list li::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            background: #6366f1;
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10L9 13L14 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-top: 2px;
+        }
+
+        .inv-badge-mini {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            border: 1px solid;
+            margin-bottom: 20px;
+        }
+
+        /* Video Banner Section */
+        .video-banner-section {
+            position: relative;
+            width: 100%;
+            min-height: 300px;
+            background: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 80px 5%;
+        }
+
+        .video-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 15, 30, 0.62);
+            z-index: 1;
+        }
+
+        .video-banner-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .video-banner-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            margin: 0;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        .video-banner-quote {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 680px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .video-banner-person {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .video-banner-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            object-fit: cover;
+        }
+
+        .video-banner-person-info {
+            text-align: left;
+        }
+
+        .video-banner-person-info strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.04em;
+        }
+
+        .video-banner-person-info span {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .video-banner-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 10px;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.08);
+            transition: background 0.25s, border-color 0.25s, transform 0.2s;
+        }
+
+        .video-banner-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .video-banner-title {
+                font-size: 2rem;
+            }
+
+            .video-banner-section {
+                padding: 60px 5%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .probe-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .inv-row {
+                flex-direction: column !important;
+                gap: 40px !important;
+                text-align: center;
+            }
+
+            .inv-row:nth-child(even) {
+                flex-direction: column !important;
+            }
+
+            .inv-content {
+                text-align: center;
+            }
+
+            .inv-list li {
+                justify-content: center;
+            }
+
+            .inv-feature-grid {
+                gap: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)" class="active">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html" class="sub-feature-item">
+                                class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="checklist-hero">
+        <div class="haccp-badge">Intelligent Operations & Compliance</div>
+        <h1 class="hero-title">Digital Checklists. <br><span class="text-gradient">Bulletproof Safety.</span></h1>
+        <p class="hero-subtitle">The all-in-one platform for food safety compliance, digital task management, and
+            Bluetooth temperature monitoring. Replace paper logs with real-time AI visibility.</p>
+        <div class="hero-cta center">
+            <a href="javascript:void(0)" class="btn-primary btn-large pulse-anim">Get Started For Free</a>
+            <a href="javascript:void(0)" class="btn-secondary btn-large">See How it Works</a>
+        </div>
+    </header>
+
+    <section class="trusted-by" style="background: white; padding: 40px 5% 60px;">
+        <p
+            style="color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 30px;">
+            Trusted by the world's most safety-conscious brands</p>
+        <div class="marquee">
+            <div class="marquee-content">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp"
+                        alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's"
+                        class="brand-logo-img"></div>
+            </div>
+            <!-- Duplicate for seamless scrolling -->
+            <div class="marquee-content" aria-hidden="true">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp"
+                        alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's"
+                        class="brand-logo-img"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Video Testimonial Banner Section -->
+    <section class="video-banner-section reveal">
+        <div class="video-banner-overlay"></div>
+        <div class="video-banner-content">
+            <h2 class="video-banner-title">The future of food safety is digital</h2>
+            <p class="video-banner-quote">I've worked with many food safety temperature probes and I can tell you that
+                zip thermometer rises above them all.</p>
+            <div class="video-banner-person">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Mital Riwal" class="video-banner-avatar">
+                <div class="video-banner-person-info">
+                    <strong>MITAL RIWAL</strong>
+                    <span>Manager of Product Development</span>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="video-banner-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="11" stroke="white" stroke-width="1.5" fill="none" />
+                    <polygon points="10,8 17,12 10,16" fill="white" />
+                </svg>
+                Watch Video
+            </a>
+        </div>
+    </section>
+
+    <!-- 7 Principles of HACCP Section -->
+    <section class="haccp-principles reveal">
+        <div style="text-align:center; padding: 0 5%;">
+            <span class="checklist-badge-mini"
+                style="background: rgba(99, 102, 241, 0.08); color: var(--checklist-primary); padding: 6px 14px; border-radius: 100px; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; border: 1px solid rgba(99, 102, 241, 0.15);">Foundation
+                of Food Safety</span>
+            <h2 id="digital-haccp" style="font-size: 3rem; margin: 20px 0;">The 7 Principles of <span class="text-gradient">HACCP</span>
+            </h2>
+            <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto;">ZipHACCP automates the
+                internationally recognized Hazardous Analysis Critical Control Point standards for your restaurant.</p>
+        </div>
+
+        <div class="haccp-principles-grid">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">1</span>
+                        <span class="principle-title">Hazard Analysis</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 1</span>
+                        <h3>Hazard Analysis</h3>
+                        <p>Identify biological, chemical, or physical hazards that could contaminate food.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">2</span>
+                        <span class="principle-title">Critical Control Points</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 2</span>
+                        <h3>Critical Control Points</h3>
+                        <p>Determine the points where hazards can be prevented, eliminated, or reduced to safe levels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">3</span>
+                        <span class="principle-title">Critical Limits</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 3</span>
+                        <h3>Critical Limits</h3>
+                        <p>Establish minimum and maximum values (like temperature) for each CCP to ensure safety.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">4</span>
+                        <span class="principle-title">Monitoring Procedures</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 4</span>
+                        <h3>Monitoring Procedures</h3>
+                        <p>Automated and manual tracking to ensure all critical limits are consistently met.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">5</span>
+                        <span class="principle-title">Corrective Actions</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 5</span>
+                        <h3>Corrective Actions</h3>
+                        <p>Define immediate steps to be taken when a critical limit is not reached.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">6</span>
+                        <span class="principle-title">Verification</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 6</span>
+                        <h3>Verification</h3>
+                        <p>Regular review of the HACCP system to ensure it is operating effectively.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="principle-number">Principle</span>
+                        <span class="principle-big-num">7</span>
+                        <span class="principle-title">Record Keeping</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="principle-number">Principle 7</span>
+                        <h3>Record Keeping</h3>
+                        <p>Digital logs of all safety data for audit-ready compliance reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bluetooth Probe Section -->
+    <section class="probe-section reveal">
+        <div class="probe-container">
+            <div class="probe-content">
+                <span class="haccp-badge"
+                    style="background:rgba(255,255,255,0.1); color:white; border-color:rgba(255,255,255,0.2);">Precision
+                    Hardware</span>
+                <h2 id="task-mgmt" style="font-size: 3.5rem; color: white; margin-bottom: 25px;">The Zip HACCP <span
+                        class="text-gradient">Bluetooth Probe</span></h2>
+                <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 30px;">Ditch the manual entries. Our
+                    Bluetooth probe syncs directly with the ZipHACCP app, recording temperatures with 100% accuracy in
+                    real-time.</p>
+                <ul class="feature-list" style="color: #cbd5e1; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="10" fill="#6366f1" />
+                            <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Instant Sync with Mobile App
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="10" fill="#6366f1" />
+                            <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        +/- 0.5°C Precision Accuracy
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="10" fill="#6366f1" />
+                            <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Rugged, Dishwasher-Safe Design
+                    </li>
+                </ul>
+                <div style="margin-top: 40px; display: flex; align-items: center; gap: 20px;">
+                    <div style="font-size: 2rem; font-weight: 800;">$200.00</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">One-time hardware cost</div>
+                </div>
+            </div>
+            <div class="probe-image float-anim">
+                <img src="https://lh3.googleusercontent.com/d/1uPCEDuz-JGy9pN0zqUWxK-wVSCQ_fQUB"
+                    alt="Zip HACCP Bluetooth Probe"
+                    style="filter: drop-shadow(0 0 40px rgba(99,102,241,0.3)); width: 100%;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Experience Redesign -->
+    <section class="mobile-exp-section reveal">
+        <div class="mobile-exp-container">
+            <div class="mobile-exp-content">
+                <div class="glass-card">
+                    <span class="exp-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                        Mobile Command Center
+                    </span>
+                    <h2 id="food-safety" style="font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1;">Safety in the <span
+                            class="text-gradient">Palm of Your Hand</span></h2>
+                    <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6;">
+                        ZipHACCP's mobile app turns every staff smartphone into a powerful compliance tool. Manage
+                        tasks, monitor sensors, and take corrective action from anywhere.</p>
+
+                    <div class="exp-list">
+                        <div class="exp-item">
+                            <div class="exp-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                </svg>
+                            </div>
+                            <h4>Push Notifications</h4>
+                            <p>Instant alerts for failed safety checks or critical breaches.</p>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                            </div>
+                            <h4>Management Log</h4>
+                            <p>Seamless store-to-store communication and audit trails.</p>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.5 19L15 16.5M19 16.5L16.5 19"></path>
+                                    <path d="M13.5 13L11 10.5M15 10.5L12.5 13"></path>
+                                    <path
+                                        d="M6.5 14.482A7 7 0 1 0 12.002 8A7 7 0 0 0 6.5 14.482ZM12 8V8.01M12 12V12.01M12 16V16.01">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h4>Offline Sync</h4>
+                            <p>Work seamlessly in walk-ins and basements without data loss.</p>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                    </path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </div>
+                            <h4>Critical Alerts</h4>
+                            <p>Immediate escalation to managers for high-risk violations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-exp-image float-anim">
+                <div class="phone-mockup-wrapper">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+                        alt="ZipHACCP Mobile App" class="phone-screen-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Feature Rows -->
+    <section id="features" class="inv-feature-section" style="padding-top: 50px;">
+        <div class="inv-feature-grid">
+            <!-- MOOYAH Success Story (Interspersed) -->
+            <div class="success-story-card reveal" style="margin-bottom: 80px;">
+                <div class="story-brand-logo-wrap">
+                    <img src="https://logo.clearbit.com/mooyah.com" alt="Mooyah Logo"
+                        onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://mooyah.com&size=128'">
+                </div>
+                <div class="story-content-wrap">
+                    <span class="story-type-label">Success Story</span>
+                    <p class="story-quote">Food safety with Altametrics has become much easier which means we can devote
+                        more time to helping our guests and seeing their smiles on their faces.</p>
+                    <div class="story-author">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=150&h=150&q=80"
+                            alt="Will Belmont" class="story-author-img">
+                        <div class="story-author-info">
+                            <strong>Will Belmont</strong>
+                            <span>Mooyah Store Manager</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-media-wrap">
+                    <img src="assets/mooyah_story.png" alt="MOOYAH Success" class="story-media-img">
+                    <div class="story-play-overlay">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature: Real-time Alerts -->
+            <div class="inv-row reveal">
+                <div class="inv-content">
+                    <span class="inv-badge-mini"
+                        style="background: rgba(239, 68, 68, 0.08); color: var(--haccp-danger); border-color: rgba(239, 68, 68, 0.15);">Instant
+                        Accountability</span>
+                    <h3 style="font-size: 3rem; margin-bottom: 20px;">Real-Time Alerts & <span
+                            class="text-gradient">Corrective Actions</span></h3>
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 25px;">Never let a food
+                        safety breach go unnoticed. ZipHACCP automatically triggers corrective action protocols the
+                        second a temperature or safety check fails.</p>
+                    <ul class="inv-list">
+                        <li>Instant SMS & Email alerts for critical violations</li>
+                        <li>Step-by-step resolution guides for staff</li>
+                        <li>Manager sign-off required for all safety breaches</li>
+                        <li>Historical audit trail for every corrective action</li>
+                    </ul>
+                </div>
+                <div class="inv-image float-anim-reverse reveal">
+                    <img src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?auto=format&fit=crop&w=800&q=80"
+                        alt="Corrective Action Alerts" style="width: 100%; border-radius: 20px;">
+                </div>
+            </div>
+
+            <!-- Famous Dave's Success Story (Interspersed) -->
+            <div class="success-story-card reveal" style="margin: 80px 0;">
+                <div class="story-brand-logo-wrap">
+                    <img src="https://logo.clearbit.com/famousdaves.com" alt="Famous Dave's Logo"
+                        onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://famousdaves.com&size=128'">
+                </div>
+                <div class="story-content-wrap">
+                    <span class="story-type-label">Success Story</span>
+                    <p class="story-quote">Altametrics transformed our compliance workflow. The real-time visibility
+                        gives us the confidence that every location is upholding our high safety standards across the
+                        franchise.</p>
+                    <div class="story-author">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=150&h=150&q=80"
+                            alt="Sarah Miller" class="story-author-img">
+                        <div class="story-author-info">
+                            <strong>Sarah Miller</strong>
+                            <span>Regional Operations Director</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-media-wrap">
+                    <img src="assets/famous_daves_story.png" alt="Famous Dave's Success" class="story-media-img">
+                    <div class="story-play-overlay">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature: Digital Logs -->
+            <div class="inv-row reveal" style="flex-direction: row-reverse;">
+                <div class="inv-content">
+                    <span class="inv-badge-mini"
+                        style="background: rgba(34, 197, 94, 0.08); color: var(--haccp-success); border-color: rgba(34, 197, 94, 0.15);">Paperless
+                        Operations</span>
+                    <h3 style="font-size: 3rem; margin-bottom: 20px;">Digital Logs & <span
+                            class="text-gradient">Compliance Hub</span></h3>
+                    <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 25px;">Unify your SOPs,
+                        cooling logs, and daily checks into a single cloud-based source of truth. Audit-ready in
+                        seconds, not hours.</p>
+                    <ul class="inv-list">
+                        <li>Automated daily cooling and reheating logs</li>
+                        <li>Sanitization and equipment maintenance tracking</li>
+                        <li>Centralized document storage for health permits</li>
+                        <li>One-click export for health department audits</li>
+                    </ul>
+                </div>
+                <div class="inv-image float-anim reveal">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                        alt="Compliance Dashboard" style="width: 100%; border-radius: 20px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section (Premium Stacked Style from Inventory/index) -->
+    <section id="testimonials" class="testimonial-stack-section"
+        style="background-image: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=80');">
+        <div class="testimonial-stack-heading reveal">
+            <h2 id="field-audits">ZERO BREACHES. TOTAL PEACE OF MIND.</h2>
+            <p style="color:#cbd5e1; font-size:1.1rem; max-width:600px; margin:15px auto 0;">Join the operators who have
+                eliminated food safety anxiety with ZipHACCP.</p>
+        </div>
+
+        <div class="testimonial-cards-container">
+            <div class="testimonial-stacked-card test-card-1 reveal">
+                <div class="test-card-left">
+                    <h3>Reduced audit prep by 90%.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Audit days used to be a nightmare of searching through boxes of paper logs. With ZipHACCP, I
+                        just hand the health inspector my tablet. We haven't had a single violation since switching."
+                    </p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&h=150&q=80"
+                            alt="Sarah Jenkins" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>John Evard</strong>
+                            <span>Operations Director, Fresh Griller</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-2 reveal"
+                style="transition-delay: 0.1s; background: #1e1b4b;">
+                <div class="test-card-left">
+                    <h3>Bluetooth is a game changer.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"The Bluetooth probe integration is the first thing that actually worked for our kitchen staff.
+                        It's so fast and accurate that they actually enjoy doing the temp logs now."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&h=150&q=80"
+                            alt="David Markwell" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>David Markwell</strong>
+                            <span>Owner, Famous Dave's Franchise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-3 reveal"
+                style="transition-delay: 0.2s; background: #6366f1;">
+                <div class="test-card-left">
+                    <h3>Enterprise visibility.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Managing 15 locations meant I never knew if checklists were being done. Now I get a morning
+                        report showing exactly who missed their opening checks before I even have my coffee."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"
+                            alt="Emily Rodriguez" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Will Belmont</strong>
+                            <span>Store Manager, MOOYAH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section reveal">
+        <div class="faq-heading">
+            <h2>Compliance FAQs</h2>
+            <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">Common questions
+                about digital food safety and ZipHACCP integration.</p>
+        </div>
+        <div class="accordion">
+            <details class="accordion-item" open>
+                <summary class="accordion-header">
+                    What are the 7 principles of HACCP?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>HACCP is a management system in which food safety is addressed through the analysis and control
+                        of biological, chemical, and physical hazards from raw material production, procurement and
+                        handling, to manufacturing, distribution and consumption of the finished product. The 7
+                        principles include: Conduct a Hazard Analysis, Determine CCPs, Establish Critical Limits,
+                        Establish Monitoring Procedures, Establish Corrective Actions, Establish Verification
+                        Procedures, and Establish Record-keeping.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Does the Bluetooth probe work with any smartphone?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Yes, the Zip HACCP Bluetooth Probe is compatible with most iOS and Android devices. It connects
+                        via Bluetooth Low Energy (BLE) and syncs instantly with the ZipHACCP mobile application without
+                        the need for manual pairing on each use.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Is the system audit-ready for the health department?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Absolutely. ZipHACCP is built to exceed FDA and local health department standards. During an
+                        audit, you can instantly export digital logs, corrective action histories, and maintenance
+                        records, eliminating the need for bulky paper binders.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- ROI & Pricing Section -->
+    <section class="pricing-section reveal">
+        <h2 style="font-size: 3.5rem; margin-bottom: 15px;">Simple, Transparent <span
+                class="text-gradient">Pricing</span></h2>
+        <p style="color: var(--text-secondary); font-size: 1.2rem;">Invest in safety. Save on liability and labor.</p>
+
+        <div class="pricing-card">
+            <span class="haccp-badge">Most Popular</span>
+            <h3>Enterprise Operations</h3>
+            <div class="price">$59.99 <span>/ location / mo</span></div>
+            <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 40px;">
+                <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><svg width="18"
+                        height="18" viewBox="0 0 20 20" fill="#22c55e">
+                        <path d="M0 10l5 5L20 0" stroke="#22c55e" stroke-width="2" fill="none" />
+                    </svg> Unlimited Digital Checklists</li>
+                <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><svg width="18"
+                        height="18" viewBox="0 0 20 20" fill="#22c55e">
+                        <path d="M0 10l5 5L20 0" stroke="#22c55e" stroke-width="2" fill="none" />
+                    </svg> Real-time Bluetooth Sync</li>
+                <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><svg width="18"
+                        height="18" viewBox="0 0 20 20" fill="#22c55e">
+                        <path d="M0 10l5 5L20 0" stroke="#22c55e" stroke-width="2" fill="none" />
+                    </svg> Enterprise Audit Reporting</li>
+                <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><svg width="18"
+                        height="18" viewBox="0 0 20 20" fill="#22c55e">
+                        <path d="M0 10l5 5L20 0" stroke="#22c55e" stroke-width="2" fill="none" />
+                    </svg> Multi-Unit SOP Management</li>
+                <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><svg width="18"
+                        height="18" viewBox="0 0 20 20" fill="#22c55e">
+                        <path d="M0 10l5 5L20 0" stroke="#22c55e" stroke-width="2" fill="none" />
+                    </svg> Push Notification Alerts</li>
+            </ul>
+            <a href="javascript:void(0)" class="btn-primary btn-large" style="width: 100%;">Start Free Trial</a>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="https://altametrics.com/restaurant-back-office.html">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="inventory.html">Food Management</a>
+                    <a href="reporting.html">Reporting</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="checklist.html">Checklist</a>
+                    <a href="https://altametrics.com/restaurant-enterprise.html">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="https://altametrics.com/blog/">Articles</a>
+                    <a href="https://training.altametrics.com">Training Academy</a>
+                    <a href="https://altametrics.com/faq.html">FAQs</a>
+                    <a href="https://altametrics.com/contact.html">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="https://altametrics.com/about.html">About Us</a>
+                    <a href="https://altametrics.com/careers.html">Jobs</a>
+                    <a href="https://altametrics.com/diversity.html">Diversity</a>
+                    <a href="https://altametrics.com/schedule-demo.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved. &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/privacy-policy/"
+                    style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/terms-of-use/"
+                    style="color:var(--text-secondary); text-decoration:none;">Terms of Use</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/sitemap.html"
+                    style="color:var(--text-secondary); text-decoration:none;">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

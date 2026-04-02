@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Pricing Plans | Altametrics</title>
+    <meta name="description"
+        content="Affordable AI-driven restaurant management software. Choose the perfect plan for your business, from single units to global enterprises.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Pricing Specific Styles */
+        :root {
+            --pricing-primary: #6366f1;
+            --pricing-secondary: #8b5cf6;
+            --pricing-accent: #10b981;
+            --pricing-glow: rgba(99, 102, 241, 0.08); /* Lighter glow */
+            --pricing-bg: #f8fafc; /* Light background */
+            --pricing-text-main: #0f172a; /* Slate 900 */
+            --pricing-text-sec: #475569; /* Slate 600 */
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+
+        body {
+            background-color: var(--pricing-bg);
+            color: var(--pricing-text-main);
+        }
+
+        .pricing-hero {
+            padding: 180px 5% 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+        }
+
+        .promo-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 24px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 100px;
+            color: var(--pricing-accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(16, 185, 129, 0.2); }
+            50% { border-color: rgba(16, 185, 129, 0.5); }
+            100% { border-color: rgba(16, 185, 129, 0.2); }
+        }
+
+        .pricing-hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .billing-toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        .toggle-label.active {
+            color: var(--pricing-text-main);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.05); /* Light toggle background */
+            transition: .4s;
+            border-radius: 34px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked + .slider {
+            background-color: var(--pricing-primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Pricing Cards */
+        .pricing-section {
+            padding: 80px 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white; /* Solid white card in light mode */
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 32px;
+            padding: 50px 35px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); /* Soft light shadow */
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(99, 102, 241, 0.2);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-card.popular {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.1);
+        }
+
+        .pricing-card.popular:hover {
+            box-shadow: 0 40px 100px -20px rgba(99, 102, 241, 0.3);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gradient);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--pricing-text-main);
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .price-symbol {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pricing-text-main);
+            opacity: 0.8;
+        }
+
+        .price-value {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--pricing-text-main);
+            letter-spacing: -0.04em;
+        }
+
+        .price-period {
+            font-size: 1.1rem;
+            color: var(--pricing-text-sec);
+            font-weight: 500;
+        }
+
+        .price-original {
+            font-size: 1.2rem;
+            color: #64748b;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .plan-desc {
+            color: var(--pricing-text-sec);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 50px;
+            flex-grow: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            color: var(--pricing-text-sec);
+            line-height: 1.4;
+        }
+
+        .feature-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--pricing-accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .btn-plan {
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #f1f5f9;
+            color: var(--pricing-text-main);
+        }
+
+        .btn-plan:hover {
+            background: #e2e8f0;
+            color: var(--pricing-text-main);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-plan.primary {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-plan.primary:hover {
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 120px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            border-radius: 24px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 24px 30px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th {
+            background: #f8fafc;
+            color: #64748b;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .comparison-table .feature-group {
+            background: #f1f5f9;
+            font-weight: 800;
+            color: var(--pricing-text-main);
+            font-size: 1.1rem;
+        }
+
+        .check-icon {
+            color: var(--pricing-accent);
+        }
+
+        .cross-icon {
+            color: #64748b;
+            opacity: 0.5;
+        }
+
+        /* Setup Section */
+        /* Redesigned Setup Section */
+        .setup-section {
+            padding: 120px 5%;
+            background: #f8fafc;
+        }
+
+        .setup-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .setup-content {
+            text-align: left;
+        }
+
+        .setup-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 100px;
+            color: var(--pricing-primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+        }
+
+        .setup-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--pricing-text-main);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -0.04em;
+        }
+
+        .setup-desc {
+            font-size: 1.25rem;
+            color: var(--pricing-text-sec);
+            margin-bottom: 40px;
+            max-width: 550px;
+            line-height: 1.6;
+        }
+
+        .setup-steps-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .setup-step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .setup-step-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(99, 102, 241, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .step-icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pricing-primary);
+            flex-shrink: 0;
+        }
+
+        .step-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--pricing-text-main);
+            margin-bottom: 4px;
+        }
+
+        .step-text p {
+            font-size: 0.95rem;
+            color: var(--pricing-text-sec);
+            margin: 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .metric-value {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--pricing-primary);
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: -0.05em;
+        }
+
+        .metric-label {
+            font-weight: 700;
+            color: var(--pricing-text-main);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 35px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .metric-quote {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--pricing-text-main);
+            line-height: 1.6;
+            font-style: italic;
+            position: relative;
+            padding-left: 20px;
+            border-left: 4px solid var(--pricing-accent);
+        }
+
+        @media (max-width: 1000px) {
+            .setup-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+            .setup-content, .setup-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .setup-step-item {
+                text-align: left;
+            }
+            .metric-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-hero h1 {
+                font-size: 3rem;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .setup-card {
+                flex-direction: column;
+                padding: 50px 30px;
+                gap: 50px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar reveal">
+        <div class="nav-container">
+            <div class="logo" onclick="location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html#prep-planning" class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html" class="active">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pricing-hero">
+        <div class="promo-banner">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>SPRING PROMO: 50% OFF FOR 3 MONTHS</span>
+        </div>
+        <h1>Simple, Transparent <br><span class="text-gradient">Pricing for Restaurants</span></h1>
+        <p style="color: #94a3b8; font-size: 1.3rem; max-width: 700px; margin: 0 auto;">No hidden fees. No long-term contracts. Just world-class restaurant management software starting from day one.</p>
+
+        <div class="billing-toggle-container">
+            <span class="toggle-label active">Monthly</span>
+            <label class="switch">
+                <input type="checkbox" id="billingToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="toggle-label">Annual <span style="color: var(--pricing-accent); font-size: 0.8rem; background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: 10px; margin-left: 5px;">Save 20%</span></span>
+        </div>
+    </header>
+
+    <section class="pricing-section">
+        <div class="pricing-grid">
+            <!-- Essential -->
+            <div class="pricing-card">
+                <div class="plan-name">Essential</div>
+                <div class="plan-price">
+                    <span class="price-original">$150</span>
+                    <span class="price-symbol">$</span>
+                    <span class="price-value" id="price-essential">75</span>
+                    <span class="price-period">/mo</span>
+                </div>
+                <p class="plan-desc">Perfect for small bars & single-unit operators focus on core sales data.</p>
+                <ul class="feature-list">
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>POS Integration</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Sales Reporting Mobile App</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Intelligence</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Operations Dashboard</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-plan">Select Plan</a>
+            </div>
+
+            <!-- Plus -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="plan-name">Plus</div>
+                <div class="plan-price">
+                    <span class="price-original">$198</span>
+                    <span class="price-symbol">$</span>
+                    <span class="price-value" id="price-plus">99</span>
+                    <span class="price-period">/mo</span>
+                </div>
+                <p class="plan-desc">For high-volume restaurants needing advanced bank rec & safety checks.</p>
+                <ul class="feature-list">
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>All Essential Features</strong></li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Drive-thru Timer</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Full Bank Reconciliation</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Checklist & HACCP Apps</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Automated Report Delivery</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-plan primary">Select Plan</a>
+            </div>
+
+            <!-- Growth -->
+            <div class="pricing-card">
+                <div class="plan-name">Growth</div>
+                <div class="plan-price">
+                    <span class="price-value">Custom</span>
+                </div>
+                <p class="plan-desc">Ideal for expanding chains needing workforce & labor management.</p>
+                <ul class="feature-list">
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>All Plus Features</strong></li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Payroll Integration</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Employee Onboarding</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Real-time Labor Scoreboard</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Company Intranet</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-plan">Talk to Sales</a>
+            </div>
+
+            <!-- Advanced -->
+            <div class="pricing-card">
+                <div class="plan-name">Advanced</div>
+                <div class="plan-price">
+                    <span class="price-value">Enterprise</span>
+                </div>
+                <p class="plan-desc">Full ERP integration for large groups and multi-brand enterprises.</p>
+                <ul class="feature-list">
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>All Growth Features</strong></li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Accounts Payable Automation</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Distribution & Supplier Sync</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Multi-Entity Consolidation</li>
+                    <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Dedicated Success Manager</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-plan">Contact Specialist</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Comparison -->
+    <section class="comparison-section">
+        <div class="comparison-header">
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">Feature Comparison</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem;">Deep dive into every capability of the Altametrics platform.</p>
+        </div>
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th width="40%">Feature</th>
+                        <th>Essential</th>
+                        <th>Plus</th>
+                        <th>Growth</th>
+                        <th>Advanced</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="feature-group"><td colspan="5">Reporting & BI</td></tr>
+                    <tr><td>Real-time Sales Tracking</td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                    <tr><td>Mobile Analytics App</td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                    <tr><td>Custom Dashboard Builder</td><td><span class="cross-icon">−</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                    
+                    <tr class="feature-group"><td colspan="5">Operations & Safety</td></tr>
+                    <tr><td>HACCP Task Management</td><td><span class="cross-icon">−</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                    <tr><td>Inventory Management</td><td>Add-on</td><td>Add-on</td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                    <tr><td>Vendor Management</td><td><span class="cross-icon">−</span></td><td><span class="cross-icon">−</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+
+                    <tr class="feature-group"><td colspan="5">Financials</td></tr>
+                    <tr><td>Bank Reconciliation</td><td><span class="cross-icon">−</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                    <tr><td>Accounts Payable (AP)</td><td><span class="cross-icon">−</span></td><td><span class="cross-icon">−</span></td><td><span class="cross-icon">−</span></td><td><span class="check-icon">✔</span></td></tr>
+                    <tr><td>Multi-Unit Books</td><td><span class="cross-icon">−</span></td><td><span class="cross-icon">−</span></td><td><span class="check-icon">✔</span></td><td><span class="check-icon">✔</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Guided Setup -->
+    <section class="setup-section">
+        <div class="setup-container">
+            <div class="setup-content">
+                <span class="setup-badge">Included with all plans</span>
+                <h2 class="setup-title">Free Guided <br><span class="text-gradient">Expert Setup</span></h2>
+                <p class="setup-desc">Don't struggle with complex configurations. Our specialized onboarding team ensures your systems are integrated perfectly from day one.</p>
+                
+                <div class="setup-steps-grid">
+                    <div class="setup-step-item">
+                        <div class="step-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div class="step-text">
+                            <h4>POS & Bank Connectivity</h4>
+                            <p>We handle the heavy lifting of connecting your data sources.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step-item">
+                        <div class="step-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        </div>
+                        <div class="step-text">
+                            <h4>Workflow Customization</h4>
+                            <p>Tailoring the platform to your specific operational needs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step-item">
+                        <div class="step-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div class="step-text">
+                            <h4>Team Training & Rollout</h4>
+                            <p>Guided training for your managers and mobile app deployment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="setup-visual">
+                <div class="metric-card">
+                    <div class="metric-value">99.8%</div>
+                    <span class="metric-label">Customer Satisfaction Score</span>
+                    <blockquote class="metric-quote">
+                        "The onboarding experience was seamless. We went live across 12 units in record time with zero data issues."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Symbols -->
+    <section style="padding: 60px 5%; text-align: center; background: white; border-top: 1px solid rgba(0,0,0,0.05);">
+        <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 10px; color: #94a3b8; font-weight: 600;">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Enterprise Security
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; color: #94a3b8; font-weight: 600;">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                24/7 Global Support
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; color: #94a3b8; font-weight: 600;">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                ISO Certified
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="https://altametrics.com/restaurant-back-office.html">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="https://altametrics.com/restaurant-inventory.html">Food Management</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="https://altametrics.com/restaurant-checklist.html">Checklist</a>
+                    <a href="https://altametrics.com/restaurant-enterprise.html">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="https://altametrics.com/blog/">Articles</a>
+                    <a href="https://training.altametrics.com">Training Academy</a>
+                    <a href="https://altametrics.com/faq.html">FAQs</a>
+                    <a href="https://altametrics.com/contact.html">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="https://altametrics.com/about.html">About Us</a>
+                    <a href="https://altametrics.com/careers.html">Jobs</a>
+                    <a href="https://altametrics.com/diversity.html">Diversity</a>
+                    <a href="https://altametrics.com/schedule-demo.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved. &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/privacy-policy/"
+                    style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/terms-of-use/"
+                    style="color:var(--text-secondary); text-decoration:none;">Terms of Use</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/sitemap.html"
+                    style="color:var(--text-secondary); text-decoration:none;">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple toggle logic for demo
+        const toggle = document.getElementById('billingToggle');
+        const priceEssential = document.getElementById('price-essential');
+        const pricePlus = document.getElementById('price-plus');
+        const labels = document.querySelectorAll('.toggle-label');
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                // Annual
+                priceEssential.textContent = '60';
+                pricePlus.textContent = '79';
+                labels[0].classList.remove('active');
+                labels[1].classList.add('active');
+            } else {
+                // Monthly
+                priceEssential.textContent = '75';
+                pricePlus.textContent = '99';
+                labels[1].classList.remove('active');
+                labels[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

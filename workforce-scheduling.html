@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altametrics | Agentic AI Workforce Management</title>
+    <meta name="description" content="Deploy labor profitably with AI-driven workforce management. Predictive scheduling, mobile shift-pooling, continuous labor compliance, and automated payroll.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific Styles for Workforce Page to prevent cluttering main styles.css */
+        .workforce-hero { padding: 180px 5% 100px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); }
+        .wf-badge { background: rgba(79, 70, 229, 0.1); color: #4f46e5; padding: 8px 16px; border-radius: 20px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.85rem; display: inline-block; margin-bottom: 20px; border: 1px solid rgba(79,70,229,0.2); }
+        .wf-feature-row { display: flex; align-items: center; gap: 80px; max-width: 1200px; margin: 0 auto 100px; }
+        .wf-feature-row:nth-child(even) { flex-direction: row-reverse; }
+        .wf-feature-content { flex: 1; text-align: left; }
+        .wf-feature-content h3 { font-size: 2.5rem; margin-bottom: 20px; color: #0f172a; line-height: 1.2; letter-spacing: -0.03em; }
+        .wf-feature-content p { font-size: 1.15rem; color: #475569; line-height: 1.6; margin-bottom: 25px; }
+        .wf-feature-image { flex: 1; position: relative; }
+        .wf-feature-image img { width: 100%; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); display: block; object-fit: cover; height: 420px; border: 1px solid rgba(0,0,0,0.05); }
+        .wf-feature-list { list-style: none; padding: 0; }
+        .wf-feature-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: #334155; font-weight: 500; }
+        .wf-feature-list li::before { content: '✓'; position: absolute; left: 0; color: #10b981; font-weight: 900; }
+        
+        .roi-section { padding: 100px 5%; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin-top: 60px; }
+        .roi-card { padding: 40px 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .roi-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.05); }
+        .roi-number { font-size: 4rem; font-weight: 900; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; line-height: 1; }
+        .roi-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #f8fafc; }
+        .roi-text { font-size: 1rem; color: #94a3b8; line-height: 1.5; }
+
+        .dashboard-img-mock { width: 100%; max-width: 1200px; height: 650px; margin: 60px auto 0; background: url('assets/workforce_hero_multi_screen_spread_1774436042392.png') center/contain no-repeat; border-radius: 20px; filter: drop-shadow(0 40px 80px rgba(0,0,0,0.2)); border: none; transform: perspective(1200px) rotateX(2deg); transition: transform 0.5s ease; position: relative; }
+        .dashboard-img-mock::after { content: 'AI Workforce Suite'; position: absolute; top: 30px; right: 40px; background: rgba(255,255,255,0.9); color: #0f172a; padding: 6px 18px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(10px); }
+        .dashboard-img-mock:hover { transform: perspective(1200px) rotateX(0deg) translateY(-10px); }
+
+        @media (max-width: 900px) {
+            .wf-feature-row, .wf-feature-row:nth-child(even) { flex-direction: column; gap: 40px; text-align: center; }
+            .wf-feature-content { text-align: center; }
+            .wf-feature-content h3 { font-size: 2.2rem; }
+            .wf-feature-list { text-align: left; display: inline-block; }
+            .roi-grid { grid-template-columns: 1fr; gap: 20px; }
+            .dashboard-img-mock { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb top-left"></div>
+    <div class="glow-orb top-right" style="background:#ec4899; animation-delay:-3s;"></div>
+
+    <nav class="navbar reveal">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon" onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'" style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)" class="active">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html#prep-planning" class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="workforce-hero">
+        <div class="hero-text fade-up">
+            <span class="wf-badge">Agentic AI Powered</span>
+            <h1 style="font-size: 4.5rem; margin-bottom:20px; letter-spacing:-0.05em;">Deploy Labor <span class="text-gradient">Profitably.</span></h1>
+            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; color: #475569;">
+                Make smarter schedules faster. Altametrics combines sales forecasts, weather data, and historical trends with AI to build schedules that match labor spend with actual demand.
+            </p>
+            <div class="hero-cta center">
+                <a href="#" class="btn-primary btn-large">Start Free Trial</a>
+                <a href="#features" class="btn-secondary btn-large outline">Explore Platform</a>
+            </div>
+        </div>
+
+        <div class="fade-up delay-2">
+            <div class="dashboard-img-mock"></div>
+        </div>
+    </header>
+    
+    <section class="trusted-by" style="background: white; padding: 40px 5% 60px;">
+        <p style="color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 30px;">Trusted by 100,000+ restaurant professionals across the globe</p>
+        <div class="marquee">
+            <div class="marquee-content">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp" alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's" class="brand-logo-img"></div>
+            </div>
+            <!-- Duplicate for seamless scrolling -->
+            <div class="marquee-content" aria-hidden="true">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp" alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's" class="brand-logo-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" style="padding: 100px 5%; background: var(--bg-color); text-align: center;">
+        <h2 style="font-size: 3rem; margin-bottom: 20px;">Powerful scheduling features <br>built for modern restaurants</h2>
+        <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Streamline everything from time clocking to tip automation. Simplify shift swaps and stay ahead of complex labor laws effortlessly.</p>
+
+        <div class="wf-features-container reveal" style="padding-top:60px;">
+            <!-- Feature 1: AI Scheduling -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(219, 39, 119, 0.3); color: #db2777; background: rgba(219, 39, 119, 0.05);">AI Forecasting</div>
+                    <h3 id="ai-forecasting">Forecast and schedule smarter with AI</h3>
+                    <p>Use historical sales, local events, and labor data to build accurate schedules. Prevent overstaffing and avoid understaffing so every guest gets top-tier service.</p>
+                    <ul class="wf-feature-list">
+                        <li>Predictive models auto-generate demand-driven shifts</li>
+                        <li>Turn published schedules into reusable templates</li>
+                        <li>Live weather integrations adapt traffic trends seamlessly</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim">
+                    <img src="assets/workforce_ai_forecasting_dashboard_v2_1774435088598.png" alt="Restaurant AI Forecasting Dashboard">
+                </div>
+            </div>
+
+            <!-- Feature 2: Compliance -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(234, 179, 8, 0.3); color: #ca8a04; background: rgba(234, 179, 8, 0.05);">Compliance Alerts</div>
+                    <h3 id="compliance">Stay ahead of labor compliance</h3>
+                    <p>Get real-time alerts as you build the schedule to avoid costly violations. Altametrics serves as a strict guardrail against local, state, and federal labor laws.</p>
+                    <ul class="wf-feature-list">
+                        <li>Enforce required meal and rest breaks automatically</li>
+                        <li>Comply strictly with Fair Workweek scheduling laws</li>
+                        <li>Hard stops for minor scheduling restrictions (under 16/18)</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim-reverse">
+                    <img src="assets/workforce_compliance_alerts_mockup_1774435067858.png" alt="Restaurant Manager Labor Compliance">
+                </div>
+            </div>
+
+            <!-- Feature 3: Team Engagement / Shift Pool -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(79, 70, 229, 0.3); color: #4f46e5; background: rgba(79, 70, 229, 0.05);">Mobile App</div>
+                    <h3 id="mobile-app">Fill shift changes with less back-and-forth</h3>
+                    <p>The Altametrics Mobile App empowers your team to manage their own shift swaps, drops, and pickups while keeping managers in complete control.</p>
+                    <ul class="wf-feature-list">
+                        <li>Employees offer up or pick up open shifts with 1 tap</li>
+                        <li>Track PTO and sick time requests right in the app</li>
+                        <li>Targeted SMS/Push alerts for last-minute coverage</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim">
+                    <img src="assets/workforce_mobile_app_redesign_1774434898056.png" alt="Restaurant Employee Mobile App">
+                </div>
+            </div>
+
+            <!-- Feature 4: Payroll & Tips -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(34, 197, 94, 0.3); color: #16a34a; background: rgba(34, 197, 94, 0.05);">Automated Payroll</div>
+                    <h3 id="payroll">1-Click Payroll & Tip Automation</h3>
+                    <p>Automate fair and compliant tip distribution. Never do tip math again with seamless syncing between your POS, time clock, and payroll systems.</p>
+                    <ul class="wf-feature-list">
+                        <li>Customize tip pooling rules for easy closeouts</li>
+                        <li>Sync time and attendance directly to payroll providers</li>
+                        <li>Shift differentials to incentivize hard-to-staff times</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim-reverse">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Restaurant Payroll Software Integration">
+                </div>
+            </div>
+
+            <!-- Feature 5: Real-Time Cost Control -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(14, 165, 233, 0.3); color: #0ea5e9; background: rgba(14, 165, 233, 0.05);">Cost Control</div>
+                    <h3>Real-time labor vs. sales tracking</h3>
+                    <p>Stop waiting for end-of-week reports. See your labor cost percentage as it happens, allowing for immediate floor adjustments to protect your margins.</p>
+                    <ul class="wf-feature-list">
+                        <li>Live dashboard shows labor as a percentage of actual sales</li>
+                        <li>Push notifications when labor exceeds targeted thresholds</li>
+                        <li>Theoretical vs. actual labor variance analysis</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Real-time Labor Dashboard">
+                </div>
+            </div>
+
+            <!-- Feature 6: Enterprise Hierarchy -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(168, 85, 247, 0.3); color: #a855f7; background: rgba(168, 85, 247, 0.05);">Enterprise Scale</div>
+                    <h3>Multi-unit hierarchy & global visibility</h3>
+                    <p>Manage thousands of locations from a single source of truth. Standardize labor policies, compare store performance, and centralize reporting effortlessly.</p>
+                    <ul class="wf-feature-list">
+                        <li>Regional manager dashboards for store-to-store benchmarking</li>
+                        <li>Standardized POS & Payroll integrations across all locations</li>
+                        <li>Enterprise-wide compliance audits and reporting</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim-reverse">
+                    <img src="assets/workforce_enterprise_heatmap_1774434945580.png" alt="Enterprise Analytics Dashboard">
+                </div>
+            </div>
+
+            <!-- Feature 7: Time Clock & Attendance -->
+            <div class="wf-feature-row">
+                <div class="wf-feature-content">
+                    <div class="wf-badge" style="margin-bottom:15px; border-color: rgba(244, 63, 94, 0.3); color: #f43f5e; background: rgba(244, 63, 94, 0.05);">PlumClock</div>
+                    <h3>Precision Time & Attendance Tracking</h3>
+                    <p>Eliminate buddy-punching and time theft with our integrated PlumClock. Ensure every second of labor is accounted for with biometric and geo-fenced verification.</p>
+                    <ul class="wf-feature-list">
+                        <li>Real-time syncing between time clock and scheduling engine</li>
+                        <li>Automated break enforcement and shift start/end alerts</li>
+                        <li>Biometric and photo-verification at every punch-in/out</li>
+                    </ul>
+                </div>
+                <div class="wf-feature-image float-anim">
+                    <img src="assets/workforce_plumclock_mockup_1774435793224.png" alt="PlumClock Time Clock Interface">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Data Section -->
+    <section class="roi-section reveal">
+        <h2 style="font-size: 3rem; margin-bottom: 20px; color: white;">Measurable Impact on Your Margins</h2>
+        <p style="font-size: 1.2rem; color: #94a3b8; max-width: 600px;">Transform how you operate. See exactly why the largest quick-serve restaurant chains trust Altametrics AI for workforce management.</p>
+        
+        <div class="roi-grid">
+            <div class="roi-card float-anim">
+                <div class="roi-number">5-8%</div>
+                <div class="roi-title">Labor Cost Reduction</div>
+                <div class="roi-text">By precisely aligning restaurant staff schedules with highly accurate, localized sales forecasts.</div>
+            </div>
+            <div class="roi-card float-anim delay-1">
+                <div class="roi-number">75%</div>
+                <div class="roi-title">Less Scheduling Time</div>
+                <div class="roi-text">AI-driven auto-generation turns hours of manual spreadsheet work into minutes of review.</div>
+            </div>
+            <div class="roi-card float-anim delay-2">
+                <div class="roi-number">20%</div>
+                <div class="roi-title">Lower Turnover</div>
+                <div class="roi-text">Boost engagement with interactive mobile scheduling, shift swapping, and transparent communication.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonial-stack-section">
+        <div class="testimonial-stack-heading reveal">
+            <h2>PROVEN IMPACT ON THE BOTTOM LINE</h2>
+            <p style="color:#cbd5e1; font-size:1.1rem; max-width:600px; margin:15px auto 0;">Hear from the operators who rely on Altametrics to optimize labor spend.</p>
+        </div>
+        
+        <div class="testimonial-cards-container">
+            <div class="testimonial-stacked-card test-card-1 reveal">
+                <div class="test-card-left">
+                    <h3>15% reduction in labor costs.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Altametrics has fundamentally changed how we handle workforce management. We've seen a 15% reduction in labor costs in just six months while improving employee satisfaction."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Sarah Jenkins" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Sarah Jenkins</strong>
+                            <span>VP of Operations, Burger King</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-2 reveal" style="transition-delay: 0.1s;">
+                <div class="test-card-left">
+                    <h3>Zero overtime violations.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"The predictive scheduling completely eliminated our overtime bloat. Managers get alerts before compliance violations happen, saving us tens of thousands in penalties."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Michael Chen" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Michael Chen</strong>
+                            <span>General Manager, Wendy's Franchise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-3 reveal" style="transition-delay: 0.2s;">
+                <div class="test-card-left">
+                    <h3>Happier, engaged staff.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Our team loves the mobile app shift swapping. We no longer have managers spending hours tracking down coverage. The staff handles it seamlessly themselves."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Emily Rodriguez" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Emily Rodriguez</strong>
+                            <span>Director of HR, Regional QSR Group</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW FAQ Section -->
+    <section id="faq" class="faq-section reveal">
+        <div class="faq-heading">
+            <h2>Frequently Asked Questions</h2>
+            <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">Common questions about our Agentic AI workforce scheduling platform.</p>
+        </div>
+        <div class="accordion">
+            <details class="accordion-item" open>
+                <summary class="accordion-header">
+                    How does the AI predictive scheduling actually work?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Our Agentic AI continuously analyzes your historical sales, foot traffic, local events, and real-time weather forecasts. It uses this data to predict exactly how many staff members are needed for every 15-minute interval, ensuring you are never overstaffed during slow periods or understaffed during a rush.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Does the shift pool app require a separate subscription?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>No, the Altametrics Mobile App with integrated shift-swapping, time-off requests, and direct messaging is included out-of-the-box with our Workforce Management suite for all employees.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    How do you ensure labor compliance across different states?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Altametrics acts as your compliance guardrail. The system maintains a continuously updated database of local, state, and federal labor laws. When a manager attempts to schedule an employee in a way that would trigger a violation (e.g., Fair Workweek, minor restrictions, or overtime), the system automatically flags it.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Can this integrate with our current payroll provider?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Absolutely. We have seamless integrations with all major payroll platforms (including ADP, Paychex, and Paycom) to automate tip distribution and ensure time-and-attendance data syncs accurately with zero manual data entry.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="cta-section reveal" style="padding-top: 150px; padding-bottom: 100px;">
+        <div class="glass-panel huge-cta">
+            <h2 style="font-size: 3rem; color: var(--text-primary);">Upgrade your staff management today.</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 40px;">Stop bleeding margins. Start building schedules your team will love.</p>
+            <a href="#" class="btn-primary btn-large">Request a Personalized Demo</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="https://altametrics.com/restaurant-back-office.html">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="inventory.html">Food Management</a>
+                    <a href="reporting.html">Reporting</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="checklist.html">Checklist</a>
+                    <a href="https://altametrics.com/restaurant-enterprise.html">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="https://altametrics.com/blog/">Articles</a>
+                    <a href="https://training.altametrics.com">Training Academy</a>
+                    <a href="https://altametrics.com/faq.html">FAQs</a>
+                    <a href="https://altametrics.com/contact.html">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="https://altametrics.com/about.html">About Us</a>
+                    <a href="https://altametrics.com/careers.html">Jobs</a>
+                    <a href="https://altametrics.com/diversity.html">Diversity</a>
+                    <a href="https://altametrics.com/schedule-demo.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved. &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/privacy-policy/"
+                    style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/legal/terms-of-use/"
+                    style="color:var(--text-secondary); text-decoration:none;">Terms of Use</a> &nbsp; | &nbsp; <a
+                    href="https://altametrics.com/sitemap.html"
+                    style="color:var(--text-secondary); text-decoration:none;">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

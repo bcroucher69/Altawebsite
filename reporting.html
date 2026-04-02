@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altametrics | Restaurant Reporting & Business Intelligence</title>
+    <meta name="description"
+        content="Put your finger on the pulse of your restaurant from anywhere. Real-time reporting, business intelligence dashboards, loss prevention, and daily activity reports — all in one platform.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ═══════════════════════════════════════════
+           REPORTING PAGE — PAGE-SPECIFIC STYLES
+        ═══════════════════════════════════════════ */
+
+        /* Hero */
+        .rp-hero {
+            padding: 180px 5% 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #f0f4ff 0%, #ffffff 100%);
+        }
+
+        .rp-badge {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 22px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+
+        .rp-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 22px;
+            letter-spacing: -0.05em;
+            line-height: 1.05;
+        }
+
+        .rp-hero p {
+            font-size: 1.25rem;
+            max-width: 760px;
+            margin: 0 auto 44px;
+            color: #475569;
+            line-height: 1.65;
+        }
+
+        /* Hero dashboard mock */
+        .rp-dashboard-mock {
+            max-width: 1150px;
+            margin: 60px auto 0;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(99, 102, 241, 0.15), 0 0 0 1px rgba(99, 102, 241, 0.1);
+            transform: perspective(1400px) rotateX(2deg);
+            transition: transform 0.55s ease;
+        }
+
+        .rp-dashboard-mock:hover {
+            transform: perspective(1400px) rotateX(0deg) translateY(-10px);
+        }
+
+        .rp-dashboard-mock img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Pill Stats Row */
+        .rp-stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 70px 5% 80px;
+            background: #ffffff;
+        }
+
+        .rp-stat-pill {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 28px 36px;
+            text-align: center;
+            min-width: 190px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .rp-stat-pill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .rp-stat-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .rp-stat-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        /* Section header reusable */
+        .rp-section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .rp-section-header h2 {
+            font-size: 2.9rem;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .rp-section-header p {
+            font-size: 1.15rem;
+            color: #475569;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Feature rows (mirrors workforce-scheduling.html pattern) */
+        .rp-feature-row {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .rp-feature-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .rp-feature-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .rp-feature-content h3 {
+            font-size: 2.4rem;
+            margin-bottom: 18px;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+        }
+
+        .rp-feature-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .rp-feature-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .rp-feature-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            display: block;
+            object-fit: cover;
+            height: 420px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .rp-feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rp-feature-list li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 13px;
+            color: #334155;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .rp-feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-weight: 900;
+        }
+
+        /* Tab hero section (ESP tabs) */
+        .rp-tab-section {
+            background: #fafbff;
+            padding: 90px 5%;
+        }
+
+        .rp-tabs-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .rp-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .rp-tab {
+            padding: 11px 24px;
+            border-radius: 30px;
+            border: 1.5px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.25s;
+        }
+
+        .rp-tab:hover,
+        .rp-tab.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .rp-tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .rp-tab-content.active {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .rp-tab-text {
+            flex: 1;
+        }
+
+        .rp-tab-text h3 {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .rp-tab-text p {
+            font-size: 1.05rem;
+            color: #475569;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .rp-tab-img {
+            flex: 1;
+        }
+
+        .rp-tab-img img {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        /* BI Defined Cards */
+        .rp-bi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .rp-bi-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 36px 32px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rp-bi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-accent, linear-gradient(90deg, #6366f1, #8b5cf6));
+        }
+
+        .rp-bi-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .rp-bi-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 18px;
+        }
+
+        .rp-bi-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .rp-bi-card p {
+            font-size: 0.97rem;
+            color: #64748b;
+            line-height: 1.65;
+        }
+
+        /* Success Story quote block */
+        .rp-success-story {
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            border-radius: 24px;
+            padding: 56px 60px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            color: white;
+        }
+
+        .rp-success-story-text {
+            flex: 1;
+        }
+
+        .rp-success-badge {
+            background: rgba(99, 102, 241, 0.3);
+            color: #c7d2fe;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        .rp-success-story blockquote {
+            font-size: 1.3rem;
+            line-height: 1.65;
+            color: #e2e8f0;
+            margin: 0 0 24px;
+            font-style: italic;
+        }
+
+        .rp-success-story cite {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .rp-success-story-stat {
+            flex: 0 0 auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 34px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rp-ss-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a5b4fc, #f0abfc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .rp-ss-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            max-width: 120px;
+            line-height: 1.4;
+        }
+
+        /* ROI Dark Section */
+        .rp-roi-section {
+            padding: 100px 5%;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .rp-roi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .rp-roi-card {
+            padding: 36px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .rp-roi-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .rp-roi-icon {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        .rp-roi-number {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a5b4fc, #f0abfc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .rp-roi-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+        }
+
+        .rp-roi-text {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* FAQ */
+        .rp-faq-section {
+            padding: 100px 5%;
+            background: #f8fafc;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .rp-roi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .rp-bi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .rp-hero h1 {
+                font-size: 3rem;
+            }
+
+            .rp-feature-row,
+            .rp-feature-row:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .rp-feature-content {
+                text-align: center;
+            }
+
+            .rp-feature-list {
+                text-align: left;
+                display: inline-block;
+            }
+
+            .rp-tab-content.active {
+                flex-direction: column;
+            }
+
+            .rp-success-story {
+                flex-direction: column;
+                padding: 44px 32px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .rp-roi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rp-stats-row {
+                gap: 16px;
+            }
+
+            .rp-stat-pill {
+                min-width: 140px;
+                padding: 22px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow-orb top-left" style="background: #6366f1;"></div>
+    <div class="glow-orb top-right" style="background: #8b5cf6; animation-delay: -3s;"></div>
+
+    <!-- ═══ NAV ═══ -->
+    <nav class="navbar reveal">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <img src="https://logo.clearbit.com/altametrics.com" alt="Altametrics Icon"
+                    onerror="this.onerror=null; this.src='https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://altametrics.com&size=128'"
+                    style="height: 32px; width: auto; object-fit: contain; border-radius: 6px;">
+                <span class="altametrics-logo-text">Altametrics</span>
+
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)" class="active">Solutions</a>
+                    <div class="dropdown-menu">
+                        <!-- Sidebar -->
+                        <div class="dropdown-sidebar">
+                            <a href="workforce-scheduling.html" class="active" data-target="workforce">
+                                <span class="icon">👥</span> Workforce
+                            </a>
+                            <a href="inventory.html" data-target="inventory">
+                                <span class="icon">📦</span> Inventory
+                            </a>
+                            <a href="checklist.html" data-target="checklist">
+                                <span class="icon">📋</span> Checklist
+                            </a>
+                            <a href="reporting.html" data-target="reporting">
+                                <span class="icon">📊</span> Reporting
+                            </a>
+                            <a href="accounting.html" data-target="accounting">
+                                <span class="icon">💰</span> Accounting
+                            </a>
+                        </div>
+
+                        <!-- Content Panel -->
+                        <div class="dropdown-content-panel">
+                            
+                            <!-- Panel: Workforce -->
+                            <div class="dropdown-sub-panel active" id="panel-workforce">
+                                <div class="panel-header">
+                                    <h4>Workforce Suite</h4>
+                                    <p>AI-driven scheduling and labor compliance.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="workforce-scheduling.html#ai-forecasting" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Forecasting</span>
+                                        <span class="sub-item-desc">Predict demand with ML.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#compliance" class="sub-feature-item">
+                                        <span class="sub-item-title">Compliance</span>
+                                        <span class="sub-item-desc">Stay ahead of labor laws.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#mobile-app" class="sub-feature-item">
+                                        <span class="sub-item-title">Mobile App</span>
+                                        <span class="sub-item-desc">Staff shift pooling.</span>
+                                    </a>
+                                    <a href="workforce-scheduling.html#payroll" class="sub-feature-item">
+                                        <span class="sub-item-title">Payroll & Tips</span>
+                                        <span class="sub-item-desc">Automated distributions.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="workforce-scheduling.html" class="explore-link">Explore Workforce Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Inventory -->
+                            <div class="dropdown-sub-panel" id="panel-inventory">
+                                <div class="panel-header">
+                                    <h4>Inventory Suite</h4>
+                                    <p>Real-time supply chain and cost control.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="inventory.html#waste-reduction" class="sub-feature-item">
+                                        <span class="sub-item-title">Waste Reduction</span>
+                                        <span class="sub-item-desc">Protect your margins.</span>
+                                    </a>
+                                    <a href="inventory.html#purchasing" class="sub-feature-item">
+                                        <span class="sub-item-title">Purchasing</span>
+                                        <span class="sub-item-desc">Smart vendor ordering.</span>
+                                    </a>
+                                    <a href="inventory.html#recipe-costing" class="sub-feature-item">
+                                        <span class="sub-item-title">Recipe Costing</span>
+                                        <span class="sub-item-desc">Automated P-Mix sync.</span>
+                                    </a>
+                                    <a href="inventory.html#prep-planning" class="sub-feature-item">
+                                        <span class="sub-item-title">Prep Planning</span>
+                                        <span class="sub-item-desc">Guide the back-of-house.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="inventory.html" class="explore-link">Explore Inventory Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Checklist -->
+                            <div class="dropdown-sub-panel" id="panel-checklist">
+                                <div class="panel-header">
+                                    <h4>Operations Suite</h4>
+                                    <p>Digital compliance and food safety.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="checklist.html#digital-haccp" class="sub-feature-item">
+                                        <span class="sub-item-title">Digital HACCP</span>
+                                        <span class="sub-item-desc">Bluetooth sensor sync.</span>
+                                    </a>
+                                    <a href="checklist.html#field-audits" class="sub-feature-item">
+                                        <span class="sub-item-title">Field Audits</span>
+                                        <span class="sub-item-desc">Standardize your brand.</span>
+                                    </a>
+                                    <a href="checklist.html#food-safety" class="sub-feature-item">
+                                        <span class="sub-item-title">Food Safety</span>
+                                        <span class="sub-item-desc">Health inspection ready.</span>
+                                    </a>
+                                    <a href="checklist.html#task-mgmt" class="sub-feature-item">
+                                        <span class="sub-item-title">Task Mgmt</span>
+                                        <span class="sub-item-desc">Digital shift checklists.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="checklist.html" class="explore-link">Explore Operations Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Reporting -->
+                            <div class="dropdown-sub-panel" id="panel-reporting">
+                                <div class="panel-header">
+                                    <h4>Reporting Suite</h4>
+                                    <p>Live business intelligence dashboards.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="reporting.html#real-time-sales" class="sub-feature-item">
+                                        <span class="sub-item-title">Real-Time Sales</span>
+                                        <span class="sub-item-desc">Live from your POS.</span>
+                                    </a>
+                                    <a href="reporting.html#bi-analytics" class="sub-feature-item">
+                                        <span class="sub-item-title">BI Analytics</span>
+                                        <span class="sub-item-desc">Multi-unit performance.</span>
+                                    </a>
+                                    <a href="reporting.html#loss-prevention" class="sub-feature-item">
+                                        <span class="sub-item-title">Loss Prevention</span>
+                                        <span class="sub-item-desc">Detect theft & error.</span>
+                                    </a>
+                                    <a href="reporting.html#ai-insights" class="sub-feature-item">
+                                        <span class="sub-item-title">AI Insights</span>
+                                        <span class="sub-item-desc">Actionable insights.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="reporting.html" class="explore-link">Explore Reporting Suite →</a>
+                                </div>
+                            </div>
+
+                            <!-- Panel: Accounting -->
+                            <div class="dropdown-sub-panel" id="panel-accounting">
+                                <div class="panel-header">
+                                    <h4>Accounting Suite</h4>
+                                    <p>Back-office financial automation.</p>
+                                </div>
+                                <div class="sub-feature-grid">
+                                    <a href="accounting.html#invoice-automation" class="sub-feature-item">
+                                        <span class="sub-item-title">Invoice Automation</span>
+                                        <span class="sub-item-desc">Zero manual data entry.</span>
+                                    </a>
+                                    <a href="accounting.html#general-ledger" class="sub-feature-item">
+                                        <span class="sub-item-title">General Ledger</span>
+                                        <span class="sub-item-desc">Unified financial view.</span>
+                                    </a>
+                                    <a href="accounting.html#bank-recon" class="sub-feature-item">
+                                        <span class="sub-item-title">Bank Recon</span>
+                                        <span class="sub-item-desc">Spot variances instantly.</span>
+                                    </a>
+                                    <a href="accounting.html#inventory-sync" class="sub-feature-item">
+                                        <span class="sub-item-title">Inventory Sync</span>
+                                        <span class="sub-item-desc">Vendor price tracking.</span>
+                                    </a>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="accounting.html" class="explore-link">Explore Accounting Suite →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="integrations.html">Integrations</a></li>
+                <li class="nav-item"><a href="resources.html">Resources</a></li>
+                <li class="nav-item"><a href="pricing.html">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="javascript:void(0)" class="btn-secondary">Log In</a>
+                <a href="javascript:void(0)" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <header class="rp-hero">
+        <div class="hero-text fade-up">
+            <span class="rp-badge">Real-Time Business Intelligence</span>
+            <h1>It's Not Reporting,<br>It's <span class="text-gradient">ESP.</span></h1>
+            <p>
+                Put your finger on the pulse of your restaurant from anywhere. Within seconds, uncover insights from
+                billions of records — find out what happened, why it happened, and exactly what to do about it.
+            </p>
+            <div class="hero-cta center">
+                <a href="#" class="btn-primary btn-large">Start Free Trial</a>
+                <a href="#features" class="btn-secondary btn-large outline">Explore Platform</a>
+            </div>
+        </div>
+
+        <!-- Hero Dashboard Image -->
+        <div class="fade-up delay-2">
+            <div class="rp-dashboard-mock">
+                <img src="assets/reporting_hero_dashboard_1774537901842.png"
+                    alt="Altametrics Restaurant Business Intelligence Dashboard" loading="eager">
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ BRANDS MARQUEE ═══ -->
+    <section class="trusted-by" style="background: white; padding: 40px 5% 60px;">
+        <p
+            style="color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 30px;">
+            Trusted by 100,000+ restaurant professionals across the globe</p>
+        <div class="marquee">
+            <div class="marquee-content">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp"
+                        alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's"
+                        class="brand-logo-img"></div>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Buffalo-180-31da30fa2.webp"
+                        alt="Buffalo Wild Wings" class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Chipotle-180-d39d5b0f0.webp" alt="Chipotle"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Jamba-bg-180-34687ebfe.webp" alt="Jamba"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Noodles-180-fa0c39df2.webp" alt="Noodles & Company"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Peets-180-c3ab70114.webp" alt="Peet's Coffee"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Pizza-bg-180-5dc7b1bfa.webp" alt="Pizza Hut"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Taco-Bell-bg-180-8e2d707da.webp" alt="Taco Bell"
+                        class="brand-logo-img"></div>
+                <div class="mock-logo"><img src="https://altametrics.com/assets/images/pages/Tokyo-bg-180-c5e968a47.webp" alt="Tokyo Joe's"
+                        class="brand-logo-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ KEY STATS ═══ -->
+    <section class="rp-stats-row reveal">
+        <div class="rp-stat-pill float-anim">
+            <div class="rp-stat-number">2B+</div>
+            <div class="rp-stat-label">Records analyzed daily</div>
+        </div>
+        <div class="rp-stat-pill float-anim delay-1">
+            <div class="rp-stat-number">12%</div>
+            <div class="rp-stat-label">Average CoGS reduction</div>
+        </div>
+        <div class="rp-stat-pill float-anim delay-2">
+            <div class="rp-stat-number">3s</div>
+            <div class="rp-stat-label">Average insight delivery time</div>
+        </div>
+        <div class="rp-stat-pill float-anim">
+            <div class="rp-stat-number">99.9%</div>
+            <div class="rp-stat-label">Platform uptime SLA</div>
+        </div>
+        <div class="rp-stat-pill float-anim delay-1">
+            <div class="rp-stat-number">500+</div>
+            <div class="rp-stat-label">POS integrations supported</div>
+        </div>
+    </section>
+
+    <!-- ═══ TAB SECTION (ESP / Coach / DAR) ═══ -->
+    <section class="rp-tab-section reveal">
+        <div class="rp-section-header">
+            <h2>Boost your operations with <span class="text-gradient">real-time intelligence</span></h2>
+            <p>Stop waiting for end-of-day reports. Get answers in seconds — from sales trends and labor ratios to theft
+                alerts and speed of service.</p>
+        </div>
+
+        <div class="scroll-intelligence-wrapper" id="scroll-intelligence">
+            <!-- Sticky Trigger (Huge height for scroll length) -->
+            <div class="scroll-trigger-area" style="height: 400vh;">
+                <div class="sticky-viewport">
+                    <!-- Background Drifting Tracks -->
+                    <div class="drifting-tracks">
+                        <div class="track track-ltr">
+                            <div class="drift-card glass-panel"><span>What's my labor %?</span></div>
+                            <div class="drift-card glass-panel"><span>Predict next week's sales</span></div>
+                            <div class="drift-card glass-panel"><span>Any theft alerts?</span></div>
+                            <div class="drift-card glass-panel"><span>How's my speed of service?</span></div>
+                            <div class="drift-card glass-panel"><span>Who's on overtime?</span></div>
+                        </div>
+                        <div class="track track-rtl">
+                            <div class="drift-card glass-panel secondary"><span>15% less labor costs</span></div>
+                            <div class="drift-card glass-panel secondary"><span>99% forecasting accuracy</span></div>
+                            <div class="drift-card glass-panel secondary"><span>Recovered $1.2k today</span></div>
+                            <div class="drift-card glass-panel secondary"><span>Top store: West Side</span></div>
+                            <div class="drift-card glass-panel secondary"><span>Action: Cut 1 staff</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Centered Content & Mockup -->
+                    <div class="centered-intelligence">
+                        <div class="phone-mockup">
+                            <!-- Mobile screen content -->
+                            <div class="mockup-screen">
+                                <img src="assets/reporting_daily_activity_1774537945391.png"
+                                    alt="Reporting" class="mockup-image active" data-mockup="1">
+                                <img src="assets/reporting_loss_prevention_1774537968323.png"
+                                    alt="Theft Prevention" class="mockup-image" data-mockup="2">
+                                <img src="assets/reporting_realtime_insights_1774537921224.png"
+                                    alt="Operations" class="mockup-image" data-mockup="3">
+                                <img src="assets/reporting_custom_builder_1774537985972.png"
+                                    alt="Reports" class="mockup-image" data-mockup="4">
+                            </div>
+                        </div>
+                        <div class="intelligence-text-area">
+                            <div class="step step-1 active" data-step="1">
+                                <span class="rp-badge">Real-Time Dashboards</span>
+                                <h3 id="real-time-sales">See every metric that matters, live.</h3>
+                                <p>Your sales, labor numbers, and guest count — all updated in real-time. Act before
+                                    problems become losses.</p>
+                            </div>
+                            <div class="step step-2" data-step="2">
+                                <span class="rp-badge">Loss Prevention</span>
+                                <h3>Stop theft before it happens.</h3>
+                                <p>Real-time exception analysis flags suspicious POS activity the moment it occurs.</p>
+                            </div>
+                            <div class="step step-3" data-step="3">
+                                <span class="rp-badge">Operations Coach</span>
+                                <h3>Coach your managers with real-time KPIs.</h3>
+                                <p>Simon, our virtual coach, guides managers to the right action in seconds.</p>
+                            </div>
+                            <div class="step step-4" data-step="4">
+                                <span class="rp-badge">Custom Reports</span>
+                                <h3>Build any report without IT help.</h3>
+                                <p>Drag-and-drop data fields and export instantly to your whole team.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Indicator Dots -->
+                    <div class="scroll-progress-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FEATURES SECTION ═══ -->
+    <section id="features" style="padding: 100px 5%; background: var(--bg-color);">
+        <div class="rp-section-header reveal">
+            <h2>All your data in one <span class="text-gradient">intelligent platform</span></h2>
+            <p>From single-location owners to enterprise chains, Altametrics gives every level of your organization the
+                data they need to act decisively.</p>
+        </div>
+
+        <div class="reveal">
+            <!-- Feature 1: Real-Time Reporting -->
+            <div class="rp-feature-row">
+                <div class="rp-feature-content">
+                    <div class="rp-badge"
+                        style="border-color: rgba(99,102,241,0.25); color: #6366f1; background: rgba(99,102,241,0.06);">
+                        Real-Time Insights</div>
+                    <h3 id="bi-analytics">Uncover insights from billions of records in seconds</h3>
+                    <p>Traditional reporting tells you what happened yesterday. Altametrics tells you what's happening
+                        right now — and what's about to go wrong — so you can act before problems compound.</p>
+                    <ul class="rp-feature-list">
+                        <li>Live sales data refreshed every 60 seconds from your POS</li>
+                        <li>Compare today vs. yesterday, last week, or any custom date range</li>
+                        <li>Mobile-first design so you're always informed, even off-site</li>
+                    </ul>
+                </div>
+                <div class="rp-feature-image float-anim">
+                    <img src="assets/reporting_realtime_insights_1774537921224.png"
+                        alt="Real-Time Restaurant Insights Dashboard">
+                </div>
+            </div>
+
+            <!-- Success Story 1 -->
+            <div class="rp-success-story reveal">
+                <div class="rp-success-story-text">
+                    <span class="rp-success-badge">✦ Success Story</span>
+                    <blockquote>"My Hong Kong team can opt to see all their business intelligence reporting in US
+                        dollars and that reporting is done on the fly to make it very valuable for the team in that
+                        market."</blockquote>
+                    <cite>— Multi-Unit Franchise Operator, Asia-Pacific Region</cite>
+                </div>
+                <div class="rp-success-story-stat">
+                    <div class="rp-ss-number">32%</div>
+                    <div class="rp-ss-desc">faster financial close cycle</div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Daily Activity Report -->
+            <div class="rp-feature-row">
+                <div class="rp-feature-content">
+                    <div class="rp-badge"
+                        style="border-color: rgba(139,92,246,0.25); color: #8b5cf6; background: rgba(139,92,246,0.06);">
+                        Mobile Reporting</div>
+                    <h3>Your full Daily Activity Report in your pocket</h3>
+                    <p>The DAR gives managers a complete picture of every shift: sales, labor numbers, speed of service,
+                        and comp/void activity — all consolidated into a clean, mobile-first view that requires zero
+                        configuration.</p>
+                    <ul class="rp-feature-list">
+                        <li>Sales, labor %, and guest count summary for every daypart</li>
+                        <li>Speed of service targets vs. actuals by hour</li>
+                        <li>Void/comp/refund activity with employee attribution</li>
+                        <li>Push notifications for KPI threshold breaches</li>
+                    </ul>
+                </div>
+                <div class="rp-feature-image float-anim-reverse">
+                    <img src="assets/reporting_daily_activity_1774537945391.png"
+                        alt="Restaurant Daily Activity Report Mobile">
+                </div>
+            </div>
+
+            <!-- Feature 3: Loss Prevention -->
+            <div class="rp-feature-row">
+                <div class="rp-feature-content">
+                    <div class="rp-badge"
+                        style="border-color: rgba(239,68,68,0.25); color: #ef4444; background: rgba(239,68,68,0.06);">
+                        Loss Prevention</div>
+                    <h3 id="loss-prevention">Loss prevention watches your business every second</h3>
+                    <p>Restaurant theft and shrinkage cost the industry billions annually. Altametrics' real-time
+                        exception analysis and cash reconciliation give you airtight control — across every shift, every
+                        register, every location.</p>
+                    <ul class="rp-feature-list">
+                        <li>Real-time POS exception alerts for voids, refunds & comps</li>
+                        <li>Cash office reconciliation balances tills to the penny</li>
+                        <li>Shrinkage trend analysis with employee-level drill-through</li>
+                        <li>Configurable alert rules adapted to your brand's thresholds</li>
+                    </ul>
+                </div>
+                <div class="rp-feature-image float-anim">
+                    <img src="assets/reporting_loss_prevention_1774537968323.png"
+                        alt="Restaurant Loss Prevention Dashboard">
+                </div>
+            </div>
+
+            <!-- Success Story 2 -->
+            <div class="rp-success-story reveal">
+                <div class="rp-success-story-text">
+                    <span class="rp-success-badge">✦ Success Story</span>
+                    <blockquote>"What Altametrics business intelligence is doing for my operators is telling them where
+                        they need to put most of their attention. That is a tool that doesn't exist anywhere else.
+                        Everyone should use it."</blockquote>
+                    <cite>— Regional Director of Operations, QSR Franchise Group</cite>
+                </div>
+                <div class="rp-success-story-stat">
+                    <div class="rp-ss-number">$1.2M</div>
+                    <div class="rp-ss-desc">recovered in shrinkage savings annually</div>
+                </div>
+            </div>
+
+            <!-- Feature 4: Custom Report Builder -->
+            <div class="rp-feature-row">
+                <div class="rp-feature-content">
+                    <div class="rp-badge"
+                        style="border-color: rgba(20,184,166,0.25); color: #0d9488; background: rgba(20,184,166,0.06);">
+                        Report Builder</div>
+                    <h3>Build the dashboards your business actually needs</h3>
+                    <p>Get the power of a full data department with a fraction of the investment. Our drag-and-drop
+                        report builder lets you mix POS, labor, and inventory data without writing a single line of SQL.
+                    </p>
+                    <ul class="rp-feature-list">
+                        <li>Import and analyze any data set with drag-and-drop simplicity</li>
+                        <li>350+ pre-built report templates ready to deploy instantly</li>
+                        <li>Export to Excel, PDF, or share as a live link to your team</li>
+                        <li>Schedule automated report subscriptions for your whole team</li>
+                    </ul>
+                </div>
+                <div class="rp-feature-image float-anim-reverse">
+                    <img src="assets/reporting_custom_builder_1774537985972.png"
+                        alt="Custom Restaurant Report Builder">
+                </div>
+            </div>
+
+            <!-- Feature 5: Multi-Unit Scorecard -->
+            <div class="rp-feature-row">
+                <div class="rp-feature-content">
+                    <div class="rp-badge"
+                        style="border-color: rgba(234,179,8,0.25); color: #ca8a04; background: rgba(234,179,8,0.06);">
+                        Enterprise Scale</div>
+                    <h3 id="ai-insights">Empower your entire team with management dashboards</h3>
+                    <p>From a single store to thousands of locations, every manager in your organization gets the right
+                        data for their level. Regional leaderboards, automated benchmarks, and departmental scorecards
+                        drive sustainable growth at scale.</p>
+                    <ul class="rp-feature-list">
+                        <li>Multi-unit scorecards comparing all locations side by side</li>
+                        <li>Automated leaderboards to build a culture of performance</li>
+                        <li>Role-based access so every team member sees what they need</li>
+                        <li>Benchmark against brand standards or peer locations</li>
+                    </ul>
+                </div>
+                <div class="rp-feature-image float-anim">
+                    <img src="assets/reporting_multiunit_scorecard_1774538003560.png"
+                        alt="Multi-Unit Restaurant Performance Scorecard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BI DEFINED — 4 CARD GRID ═══ -->
+    <section style="padding: 100px 5%; background: white;" class="reveal">
+        <div class="rp-section-header">
+            <span class="rp-badge" style="margin-bottom: 18px;">Business Intelligence Defined</span>
+            <h2>Make everyone a <span class="text-gradient">data genius</span></h2>
+            <p>The answers to all your questions are finally here — no data science degree required.</p>
+        </div>
+        <div class="rp-bi-grid">
+            <div class="rp-bi-card" style="--card-accent: linear-gradient(90deg, #6366f1, #8b5cf6);">
+                <div class="rp-bi-card-icon">📊</div>
+                <h3>Business Intelligence</h3>
+                <p>Identify top revenue drivers, create a clear vision for your entire company, and plan for any
+                    business condition using unified data from every corner of your operation.</p>
+            </div>
+            <div class="rp-bi-card" style="--card-accent: linear-gradient(90deg, #14b8a6, #06b6d4);">
+                <div class="rp-bi-card-icon">📋</div>
+                <h3>Reporting</h3>
+                <p>We love reports as much as you do. That's why creating your own is so easy. Fully transparent
+                    operational reports, data you can export, and automated subscriptions that save hours every week.
+                </p>
+            </div>
+            <div class="rp-bi-card" style="--card-accent: linear-gradient(90deg, #f59e0b, #ef4444);">
+                <div class="rp-bi-card-icon">🎯</div>
+                <h3>Menu Optimization</h3>
+                <p>Identify the most popular dishes, understand customer preferences, pinpoint which items drive
+                    margins, and spot the combinations of dishes and staff that turn tables fastest.</p>
+            </div>
+            <div class="rp-bi-card" style="--card-accent: linear-gradient(90deg, #ec4899, #8b5cf6);">
+                <div class="rp-bi-card-icon">👥</div>
+                <h3>Staffing Intelligence</h3>
+                <p>Get insights into staff performance and scheduling needs. Know when to add coverage and when to cut —
+                    all driven by real-time sales data, not gut instinct or yesterday's numbers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ ROI SECTION ═══ -->
+    <section class="rp-roi-section reveal">
+        <h2 style="font-size: 2.9rem; margin-bottom: 16px; letter-spacing: -0.03em; color: white;">Measurable Impact on
+            Your Margins</h2>
+        <p style="font-size: 1.15rem; color: #94a3b8; max-width: 600px; margin: 0 auto;">See exactly why the world's
+            largest restaurant chains rely on Altametrics reporting to protect profitability.</p>
+        <div class="rp-roi-grid">
+            <div class="rp-roi-card float-anim">
+                <div class="rp-roi-icon">📉</div>
+                <div class="rp-roi-number">12%</div>
+                <div class="rp-roi-title">CoGS Reduction</div>
+                <div class="rp-roi-text">Drive down food costs with data-driven menu analysis and real-time waste
+                    tracking.</div>
+            </div>
+            <div class="rp-roi-card float-anim delay-1">
+                <div class="rp-roi-icon">⚡</div>
+                <div class="rp-roi-number">3s</div>
+                <div class="rp-roi-title">Insight Delivery</div>
+                <div class="rp-roi-text">Uncover answers from billions of records in real-time — no waiting for batch
+                    reports.</div>
+            </div>
+            <div class="rp-roi-card float-anim delay-2">
+                <div class="rp-roi-icon">🔒</div>
+                <div class="rp-roi-number">$87K</div>
+                <div class="rp-roi-title">Avg. Theft Recovered</div>
+                <div class="rp-roi-text">Per year, per brand — through automated exception reporting and cash
+                    reconciliation.</div>
+            </div>
+            <div class="rp-roi-card float-anim">
+                <div class="rp-roi-icon">🏆</div>
+                <div class="rp-roi-number">2x</div>
+                <div class="rp-roi-title">Manager Productivity</div>
+                <div class="rp-roi-text">Managers spend 50% less time building reports and 2x more time on guest-facing
+                    operations.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section id="testimonials" class="testimonial-stack-section reveal">
+        <div class="testimonial-stack-heading">
+            <h2>PROVEN IMPACT ON THE BOTTOM LINE</h2>
+            <p style="color:#cbd5e1; font-size:1.1rem; max-width:600px; margin:15px auto 0;">Hear from the operators who
+                rely on Altametrics reporting to run smarter restaurants.</p>
+        </div>
+        <div class="testimonial-cards-container">
+            <div class="testimonial-stacked-card test-card-1 reveal">
+                <div class="test-card-left">
+                    <h3>Cut food costs by 12%.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"The ability to manage all operating metrics like food and labor costs makes it easier for us to
+                        provide benchmarking and support to our franchisees. Altametrics reporting pays for itself every
+                        month."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Brian Daniels" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Brian Daniels</strong>
+                            <span>CFO, Sbarro Holdings, Inc.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-2 reveal" style="transition-delay: 0.1s;">
+                <div class="test-card-left">
+                    <h3>Zero blind spots, ever.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"As a franchise company, we need to know what all the sales are in our stores so Altametrics
+                        Business Intelligence was able to develop a system that could get that information for us,
+                        near-instantly."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Zerrick Pearson" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Zerrick Pearson</strong>
+                            <span>VP of Operations, QSR Franchise Group</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-stacked-card test-card-3 reveal" style="transition-delay: 0.2s;">
+                <div class="test-card-left">
+                    <h3>Real clarity. Real results.</h3>
+                </div>
+                <div class="test-card-right">
+                    <p>"Altametrics BI tells my operators where they need to put most of their attention. That is a tool
+                        that doesn't exist anywhere else. The ROI was evident within the first 90 days."</p>
+                    <div class="test-card-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=150&h=150&q=80"
+                            alt="Alan Thompson" class="test-card-avatar">
+                        <div class="test-card-author-info">
+                            <strong>Alan Thompson</strong>
+                            <span>President, Gi Gi's Cupcakes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAQ SECTION ═══ -->
+    <section id="faq" class="faq-section rp-faq-section reveal">
+        <div class="faq-heading">
+            <h2>Frequently Asked Questions</h2>
+            <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">Common questions
+                about Altametrics restaurant reporting &amp; business intelligence.</p>
+        </div>
+        <div class="accordion">
+            <details class="accordion-item" open>
+                <summary class="accordion-header">
+                    Why is restaurant business intelligence important?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Restaurant BI helps you optimize operations, improve guest satisfaction, increase revenue and
+                        profitability, and make informed business decisions faster. Without BI, operators are reacting
+                        to yesterday's problems; with Altametrics, you see them coming in real-time and prevent them
+                        before they impact your bottom line.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    What are the main sources of data in Altametrics BI?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Altametrics consolidates data from your POS system, inventory management, employee time clocks,
+                        online ordering platforms, third-party delivery apps, and customer feedback tools. With 500+
+                        integrations, there are virtually no data silos left in your operation.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    How can Altametrics reporting help with menu optimization?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Altametrics identifies your most popular dishes, analyzes profitability by menu item, and
+                        highlights the combinations of items that drive the highest throughput. This helps you make
+                        data-driven decisions about promotions, limited-time offers, pricing adjustments, and menu
+                        engineering to maximize margins.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    How does the cash reconciliation and loss prevention work?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Our Cash Office module automatically pulls end-of-shift POS totals and compares them to physical
+                        cash counts reported by managers. Any discrepancy triggers an automatic alert. On the exception
+                        side, every void, refund, discount, and comp is analyzed against configurable thresholds and
+                        flagged in real-time so managers can investigate before a shift ends.</p>
+                </div>
+            </details>
+            <details class="accordion-item">
+                <summary class="accordion-header">
+                    Can I build custom reports without a data analyst?
+                    <div class="accordion-icon"></div>
+                </summary>
+                <div class="accordion-content">
+                    <p>Absolutely. Our drag-and-drop report builder gives any manager the power of a data department
+                        without IT support. Choose from 350+ pre-built templates or build from scratch by dragging data
+                        fields onto a canvas. Schedule reports to be delivered automatically to any email or push
+                        notification, and export to Excel or PDF with one click.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- ═══ CTA SECTION ═══ -->
+    <section class="cta-section reveal" style="padding-top: 150px; padding-bottom: 100px;">
+        <div class="glass-panel huge-cta">
+            <h2 style="font-size: 3rem; color: var(--text-primary);">Turn your data into your competitive edge.</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 40px;">Join 100,000+ restaurant
+                professionals who make smarter decisions with Altametrics every day.</p>
+            <a href="#" class="btn-primary btn-large">Request a Personalized Demo</a>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="altametrics-logo-text" style="color:#0f172a; margin-bottom:10px;">Altametrics</div>
+                <p>Enterprise solutions for restaurant chains</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Solutions</h4>
+                    <a href="https://altametrics.com/restaurant-back-office.html">Restaurant Software</a>
+                    <a href="workforce-scheduling.html">Workforce Management</a>
+                    <a href="inventory.html">Food Management</a>
+                    <a href="reporting.html">Reporting</a>
+                    <a href="accounting.html">Accounting</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="checklist.html">Checklist</a>
+                    <a href="https://altametrics.com/restaurant-enterprise.html">Enterprise</a>
+                </div>
+                <div class="link-col">
+                    <h4>Resources</h4>
+                    <a href="https://altametrics.com/blog/">Articles</a>
+                    <a href="https://training.altametrics.com">Training Academy</a>
+                    <a href="https://altametrics.com/faq.html">FAQs</a>
+                    <a href="https://altametrics.com/contact.html">Support</a>
+                </div>
+                <div class="link-col">
+                    <h4>Company</h4>
+                    <a href="https://altametrics.com/about.html">About Us</a>
+                    <a href="https://altametrics.com/careers.html">Jobs</a>
+                    <a href="https://altametrics.com/diversity.html">Diversity</a>
+                    <a href="https://altametrics.com/schedule-demo.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Altametrics. All rights reserved. &nbsp;|&nbsp;
+                <a href="https://altametrics.com/legal/privacy-policy/"
+                    style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a>
+                &nbsp;|&nbsp;
+                <a href="https://altametrics.com/legal/terms-of-use/"
+                    style="color:var(--text-secondary); text-decoration:none;">Terms of Use</a>
+                &nbsp;|&nbsp;
+                <a href="https://altametrics.com/sitemap.html"
+                    style="color:var(--text-secondary); text-decoration:none;">Sitemap</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- GSAP for scroll-driven animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
